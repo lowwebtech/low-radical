@@ -1,11 +1,11 @@
 {
-  "name": "web-extension-starter",
-  "version": "1.1.0",
-  "description": "Web extension starter",
+  "name": "no-amazon",
+  "version": "0.0.1",
+  "description": "No Amazon",
   "private": true,
   "main": "src/scripts/background.js",
-  "repository": "https://github.com/abhijithvijayan/web-extension-starter.git",
-  "author": "abhijithvijayan <34790378+abhijithvijayan@users.noreply.github.com>",
+  "repository": "https://github.com/lowwebtech/no-amazon.git",
+  "author": "lowwebtech <vico@lowweb.tech>",
   "license": "MIT",
   "scripts": {
     "dev:chrome": "cross-env NODE_ENV=development cross-env TARGET_BROWSER=chrome webpack --watch --mode=development",
