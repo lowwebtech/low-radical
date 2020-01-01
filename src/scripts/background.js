@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill';
+import { formatDotcoms, dotcoms, corp_dotcoms, assets_dotcoms } from './amazon_urls';
 
 browser.runtime.onInstalled.addListener(() => {
     // eslint-disable-next-line no-console
@@ -14,7 +15,7 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 
-function redirect(requestDetails) {
+function requestDotComs(requestDetails) {
   // console.log(requestDetails);
   const { type, url } = requestDetails;
   let r = {};
@@ -25,11 +26,31 @@ function redirect(requestDetails) {
   }
   return r;
 }
-
-const patterns = ['*://*.amazon.com/*', '*://*.amazon.com.au/*', '*://*.amazon.de/*', '*://*.amazon.com.br/*', '*://*.amazon.ca/*', '*://*.amazon.cn/*', '*://*.amazon.es/*', '*://*.amazon.in/*', '*://*.amazon.it/*', '*://*.amazon.co.jp/*', '*://*.amazon.mx/*', '*://*.amazon.nl/*', '*://*.amazon.co.uk/*', '*://*.amazon.ae/*', '*://*.amazon.com.tr/*', '*://*.amazon.ca/*', '*://*.amazon.fr/*'];
+function blockAssets(requestDetails) {
+  console.log(requestDetails.type);
+  // const { type, url } = requestDetails;
+  // let r = {};
+  // switch(type){
+  //   case 'font':
+  //   case 'media':
+  //   case 'object':
+  //   case 'sub_frame':
+  //     r.cancel = true;
+  // }
+  return {
+    cancel: true
+  };
+}
 
 browser.webRequest.onBeforeRequest.addListener(
-  redirect,
-  {urls: patterns},
+  requestDotComs,
+  {urls: formatDotcoms(dotcoms)},
+  ['blocking']
+);
+
+const fontsUrls = corp_dotcoms.concat(assets_dotcoms);
+browser.webRequest.onBeforeRequest.addListener(
+  blockAssets,
+  {urls: formatDotcoms(fontsUrls), types:['font', 'media', 'object', 'sub_frame']},
   ['blocking']
 );
