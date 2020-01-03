@@ -1,4 +1,4 @@
-import { formatDotcoms, dotcoms, corp_dotcoms } from './amazon_urls';
+import { formatDotcoms, dotcoms, corp_dotcoms } from './data/amazon_urls';
 
 const elements = document.getElementsByTagName('*');
 
@@ -17,8 +17,8 @@ for (let i = 0; i < elements.length; i++) {
 }
 
 
-for (let i = 0, lg = corp_dotcoms.length; i<lg; i++) {
-  if (window.location.hostname.indexOf(corp_dotcoms[i]) !== -1) {
-    document.body.style.filter = 'grayscale(1)';
-  }
-}
+// for (let i = 0, lg = corp_dotcoms.length; i<lg; i++) {
+//   if (window.location.hostname.indexOf(corp_dotcoms[i]) !== -1) {
+//     document.body.style.filter = 'grayscale(1)';
+//   }
+// }

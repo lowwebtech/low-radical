@@ -16,7 +16,7 @@ const manifestInput = {
     homepage_url: 'https://github.com/lowwebtech/no-amazon',
     short_name: 'NoAmazon',
 
-    permissions: ['activeTab', 'storage', 'webRequest', 'webRequestBlocking', '<all_urls>'],
+    permissions: ['tabs', 'storage', 'webRequest', 'webNavigation', 'webRequestBlocking', '<all_urls>'],
     content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
     '__chrome|firefox__author': 'lowwebtech',
