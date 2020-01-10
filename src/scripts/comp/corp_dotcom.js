@@ -1,5 +1,5 @@
 import browser from 'webextension-polyfill';
-import { formatDotcoms, corp_dotcoms, assets_dotcoms } from '../data/amazon_urls';
+import { formatDotcoms, corp_dotcoms, devil_corp } from '../data/amazon_urls';
 
 function blockAssets(requestDetails) {
   // const { type, url } = requestDetails;
@@ -17,12 +17,11 @@ function blockAssets(requestDetails) {
 }
 
 // block unnecessary assets
-const assetsUrls = corp_dotcoms.concat(assets_dotcoms);
 browser.webRequest.onBeforeRequest.addListener(
   blockAssets,
   {
-    urls: formatDotcoms(assetsUrls), 
-    types:['font', 'media', 'object', 'sub_frame']
+    urls: formatDotcoms(devil_corp), 
+    types: ['font', 'media', 'object', 'sub_frame']
   },
   ['blocking']
 );
