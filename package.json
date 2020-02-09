@@ -1,10 +1,10 @@
 {
-  "name": "no-amazon",
-  "version": "0.0.1",
-  "description": "No Amazon",
+  "name": "low-radical",
+  "version": "0.0.2",
+  "description": "low—radical",
   "private": true,
   "main": "src/scripts/background.js",
-  "repository": "https://github.com/lowwebtech/no-amazon.git",
+  "repository": "https://github.com/lowwebtech/low-radical.git",
   "author": "lowwebtech <vico@lowweb.tech>",
   "license": "MIT",
   "scripts": {

@@ -2,8 +2,12 @@ const pkg = require('../../package.json');
 
 const manifestInput = {
     manifest_version: 2,
-    name: 'No Amazon',
+    name: '__MSG_extensionName__',
     version: pkg.version,
+    default_locale: 'fr_FR',
+    // web_accessible_resources: [
+    //     "_locales/*",
+    // ],
 
     icons: {
         '16': 'assets/icons/favicon-16.png',
@@ -12,8 +16,8 @@ const manifestInput = {
         '128': 'assets/icons/favicon-128.png',
     },
 
-    description: 'No Fucking Amazon',
-    homepage_url: 'https://github.com/lowwebtech/no-amazon',
+    description: '__MSG_extensionDescription__',
+    homepage_url: 'https://github.com/lowwebtech/low-radical',
     short_name: 'NoAmazon',
 
     permissions: ['tabs', 'storage', 'webRequest', 'webNavigation', 'webRequestBlocking', '<all_urls>'],

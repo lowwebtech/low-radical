@@ -16,7 +16,6 @@ export const corp_bookstore_dotcoms = [
   'librarything.com',
 
   'comixology.com', 'comixology.eu', 'comixology.fr', 'comixology.co.uk',
-
 ];
 
 export const corp_dotcoms = [

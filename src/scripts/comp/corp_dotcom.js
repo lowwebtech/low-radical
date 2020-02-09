@@ -2,17 +2,8 @@ import browser from 'webextension-polyfill';
 import { formatDotcoms, corp_dotcoms, devil_corp } from '../data/amazon_urls';
 
 function blockAssets(requestDetails) {
-  // const { type, url } = requestDetails;
-  // let r = {};
-  // switch(type){
-  //   case 'font':
-  //   case 'media':
-  //   case 'object':
-  //   case 'sub_frame':
-  //     r.cancel = true;
-  // }
   return {
-    cancel: true
+    cancel: true,
   };
 }
 

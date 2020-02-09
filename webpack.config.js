@@ -63,7 +63,10 @@ module.exports = {
             chunks: ['popup'],
             filename: 'popup.html',
         }),
-        new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
+        new CopyWebpackPlugin([
+            { from: '_locales', to: '_locales' },
+            { from: 'src/assets', to: 'assets' },
+            ]),
         new WriteWebpackPlugin([{ name: manifest.name, data: Buffer.from(manifest.content) }]),
     ],
 
