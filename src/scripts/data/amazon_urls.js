@@ -49,6 +49,7 @@ export const corp_cdn_dotcoms = [
 
 export const devil_corp = dotcoms.concat(corp_bookstore_dotcoms, corp_dotcoms, corp_cdn_dotcoms);
 export const corp_degrade = corp_bookstore_dotcoms.concat(corp_dotcoms);
+export const amazon = dotcoms.concat(corp_dotcoms, corp_bookstore_dotcoms)
 
 export function formatDotcoms(array) {
   let newArray = [];

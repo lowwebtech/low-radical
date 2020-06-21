@@ -12,7 +12,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         msg: 'hello',
         url,
     });
-
-    // eslint-disable-next-line no-console
-    console.log(response);
 });

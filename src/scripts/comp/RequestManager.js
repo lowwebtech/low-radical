@@ -1,12 +1,13 @@
 import browser from 'webextension-polyfill';
 import getHostname from '../utils/get-hostname';
 
+const networkFilters = {
+  urls: ['<all_urls>'],
+};
+
 class RequestManager {
   constructor() {
     this.tabStorage = {};
-    this.networkFilters = {
-      urls: ['<all_urls>'],
-    };
   }
   getTab(tabId) {
     return this.tabStorage[tabId.toString()];
@@ -31,7 +32,7 @@ class RequestManager {
         }
         return {};
       },
-      this.networkFilters,
+      networkFilters,
       ['blocking']
     );
 
@@ -46,7 +47,7 @@ class RequestManager {
         requestDuration: details.timeStamp - request.startTime,
         status: 'complete',
       });
-    }, this.networkFilters);
+    }, networkFilters);
 
     browser.webRequest.onErrorOccurred.addListener(details => {
       const { tabId, requestId } = details;
@@ -58,7 +59,7 @@ class RequestManager {
         endTime: details.timeStamp,
         status: 'error',
       });
-    }, this.networkFilters);
+    }, networkFilters);
 
     browser.tabs.onUpdated.addListener(tabId => {
       this.addTab(tabId);

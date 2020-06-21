@@ -1,17 +1,58 @@
 import browser from 'webextension-polyfill';
-import dotcom from './comp/dotcom';
-import corp_dotcom from './comp/corp_dotcom';
+
+import { block, unblock } from './comp/block';
+import { degrade, undegrade } from './comp/degrade';
 import aws_detect from './comp/aws_detect';
 
 import Logger from './comp/Logger';
 import RequestManager from './comp/RequestManager';
 
+let blockType = '';
+
 function start(details) {
   setTimeout(() => {
     Logger.init();
     RequestManager.init();
+
+    let gettingItem = browser.storage.local.get('blockType');
+    gettingItem.then(onGot, onError);
+
+    browser.storage.onChanged.addListener(onChanged)
+
+    function onChanged(result){
+      console.log('onChanged', result)
+      if(result.blockType){
+        update(result.blockType.newValue)
+      }
+    }
+
+    function onGot(result){
+      console.log('onGot', result)
+      const type = result.blockType || 'blockAll';
+      update( type )
+    }
+
+    function onError(e){
+      console.log('error', e);
+    }
+
   },300);
 }
+
+function update(type){
+  if(blockType !== type){
+
+    if(blockType === 'blockAll') unblock()
+    else if(blockType === 'degradeAll') undegrade()
+
+    blockType = type
+
+    if(blockType === 'blockAll') block()
+    else if(blockType === 'degradeAll') degrade()
+
+  }
+}
+
 browser.runtime.onInstalled.addListener(() => {
   start()
 });
