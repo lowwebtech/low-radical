@@ -5,9 +5,9 @@ const manifestInput = {
     name: '__MSG_extensionName__',
     version: pkg.version,
     default_locale: 'fr_FR',
-    // web_accessible_resources: [
-    //     "_locales/*",
-    // ],
+    web_accessible_resources: [
+        "assets/*",
+    ],
 
     icons: {
         '16': 'assets/icons/favicon-16.png',

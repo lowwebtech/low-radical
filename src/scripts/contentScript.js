@@ -1,13 +1,10 @@
 import browser from 'webextension-polyfill';
-import { formatDotcoms, dotcoms, corp_dotcoms } from './data/amazon_urls';
 
 let gettingItem = browser.storage.local.get('replaceBy');
 gettingItem.then(onGot, onError);
 
 function onGot(result){
   const elements = document.getElementsByTagName('*');
-  console.log(result)
-
   const replaceBy = result.replaceBy || 'Jeff 🖕 Bezos';
 
   for (let i = 0; i < elements.length; i++) {

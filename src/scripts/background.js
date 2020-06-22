@@ -20,14 +20,12 @@ function start(details) {
     browser.storage.onChanged.addListener(onChanged)
 
     function onChanged(result){
-      console.log('onChanged', result)
       if(result.blockType){
         update(result.blockType.newValue)
       }
     }
 
     function onGot(result){
-      console.log('onGot', result)
       const type = result.blockType || 'blockAll';
       update( type )
     }
