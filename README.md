@@ -42,7 +42,7 @@ And in addition, you can modify all occurrences of the name Jeff Bezos, by defau
 - dark-pattern
 - ui
 - fallback text
-- options coal/shit
+- options word coal/shit
 - add to link to bookstore (ISBN)
 
 
