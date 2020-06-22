@@ -1,0 +1,27 @@
+@import "base/fonts";
+@import "base/reset";
+@import "base/variables";
+
+body {
+  color: black;
+  background-color: white;
+  min-width: 300px;
+  padding: 10px;
+}
+
+form{
+
+}
+label{
+  display: block;
+}
+
+hr{
+  border-top: 1px dotted black;
+  margin: 6px 0;
+}
+
+input[type=text]{
+  border: 1px solid black;
+  display: inline-block;
+}

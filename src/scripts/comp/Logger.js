@@ -77,7 +77,7 @@ class Logger {
       const tab = RequestManager.getTab(tabId);
       const nb = this.getNumberBlocked(tabId);
 
-      console.log('updateBadgeNumber', nb, tab);
+      // console.log('updateBadgeNumber', nb, tab);
 
       let str = '';
       let color = '#FFFFFF';
@@ -130,7 +130,6 @@ class Logger {
 
 function isAmazon(details) {
   const headers = details.responseHeaders;
-  let isAmazon = false;
   const matches = [
     ['x-amz-cf-pop', -1],
     ['x-amz-cf-id', -1],
@@ -142,15 +141,14 @@ function isAmazon(details) {
     ['via', 'cloudfront'],
     ['x-cache', 'cloudfront'],
     ['server', 'amazon'],
+    ['server', 'amazons3'],
   ];
-  // console.log(headers)
+  
+  let isAmazon = false;
   for (let i = 0, lg = headers.length; i<lg; i++) {
     for (let j = 0, lgj = matches.length; j<lgj; j++) {
-      // console.log(headers[i].name, matches[j][0])
-      if (headers[i].name === matches[j][0]) {
-        // console.log(headers[i].value.toLowerCase())
+      if (headers[i].name.toLowerCase() === matches[j][0]) {
         if (headers[i].value.toLowerCase().indexOf(matches[j][1]) !== -1 || matches[j][1] === -1) {
-          // console.log(headers[i], details)
           return true;
         }
       } 

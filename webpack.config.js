@@ -33,7 +33,7 @@ module.exports = {
         popup: './src/scripts/popup.js',
         options: './src/scripts/options.js',
         fallback: './src/scripts/fallback.js',
-        styles: ['./src/styles/popup.scss', './src/styles/options.scss'],
+        styles: './src/styles/styles.scss',
     },
 
     output: {
