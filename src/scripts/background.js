@@ -2,32 +2,39 @@ import browser from 'webextension-polyfill';
 
 import { block, unblock } from './comp/block';
 import { degrade, undegrade } from './comp/degrade';
-import aws_detect from './comp/aws_detect';
+import { aws_detect, aws_undetect } from './comp/aws_detect';
 
-import Logger from './comp/Logger';
-import RequestManager from './comp/RequestManager';
+import Logger from './managers/Logger';
+import RequestManager from './managers/RequestManager';
+
+// Logger.init();
+RequestManager.init();
 
 let blockType = '';
 
 function start(details) {
   setTimeout(() => {
-    Logger.init();
-    RequestManager.init();
 
-    let gettingItem = browser.storage.local.get('blockType');
+    let gettingItem = browser.storage.local.get(['blockType', 'awsDetect']);
     gettingItem.then(onGot, onError);
 
     browser.storage.onChanged.addListener(onChanged)
 
     function onChanged(result){
       if(result.blockType){
-        update(result.blockType.newValue)
+        updateBlockingType(result.blockType.newValue)
+      }
+      if(result.awsDetect){
+        updateAWSdetect(result.awsDetect.newValue)
       }
     }
 
     function onGot(result){
       const type = result.blockType || 'blockAll';
-      update( type )
+      const awsDetect = result.awsDetect;
+
+      updateBlockingType( type )
+      updateAWSdetect( awsDetect )
     }
 
     function onError(e){
@@ -37,9 +44,13 @@ function start(details) {
   },300);
 }
 
-function update(type){
-  if(blockType !== type){
+function updateAWSdetect(aws){
+  if(aws !== false) aws_detect()
+  else aws_undetect()
+}
 
+function updateBlockingType(type){
+  if(blockType !== type){
     if(blockType === 'blockAll') unblock()
     else if(blockType === 'degradeAll') undegrade()
 
@@ -47,18 +58,9 @@ function update(type){
 
     if(blockType === 'blockAll') block()
     else if(blockType === 'degradeAll') degrade()
-
   }
 }
 
 browser.runtime.onInstalled.addListener(() => {
   start()
 });
-
-// browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
-//     // Do something with the message!
-//     alert(request.url);
-
-//     // And respond back to the sender.
-//     return Promise.resolve('got your message, thanks!');
-// });

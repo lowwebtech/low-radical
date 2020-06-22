@@ -1,21 +1,20 @@
 import browser from 'webextension-polyfill';
 import RequestManager from './RequestManager';
+import isAmazon from '../utils/is-amazon-request.js';
 
 class Logger {
   constructor() {
     this.logs = {};
-  }
-  init() {
-    this.currentTab = undefined;
-    const onCreatedHandler = tab => {
+
+    this.onCreatedHandler = tab => {
       this.logs[tab.tabId] = [];
     };
-    const onTabActivatedHandler = tab => {
+    this.onTabActivatedHandler = tab => {
       // console.log('onTabActivated', tab.tabId)
       this.currentTab = tab;
       this.updateBadgeNumber(tab.tabId);
     };
-    const onTabUpdatedHandler = (tabId, changeInfo, tabInfo) => {
+    this.onTabUpdatedHandler = (tabId, changeInfo, tabInfo) => {
       if (changeInfo.url) {
         this.logs[tabId] = [];
         this.updateBadgeNumber(tabId);
@@ -25,31 +24,52 @@ class Logger {
         // this.updateBadgeNumber(tabId);
       }
     };
-    const onCommittedNavigationHandler = info => {
+    this.onCommittedNavigationHandler = info => {
       // console.log('onCommitted', info.transitionType, info);
       if (info.transitionType === 'reload' || info.transitionType === 'link') {
         this.logs[info.tabId] = [];
         this.updateBadgeNumber(info.tabId);
       }
     };
-    const onBeforeNavigationHandler = info => {
+    this.onBeforeNavigationHandler = info => {
       // console.log('onBeforeNavigate', info);
       if (info.frameId === 0) {
         this.logs[info.tabId] = [];
         this.updateBadgeNumber(info.tabId);
       }
     };
-    browser.tabs.onCreated.addListener(onCreatedHandler);
-    browser.tabs.onUpdated.addListener(onTabUpdatedHandler);
-    browser.tabs.onActivated.addListener(onTabActivatedHandler);
-    // browser.history.onVisited.addListener(onVisitedHandler);
-    browser.webNavigation.onCommitted.addListener(onCommittedNavigationHandler);
-    browser.webNavigation.onBeforeNavigate.addListener(onBeforeNavigationHandler);
+  }
+
+  enable() {
+    this.currentTab = undefined;
+
+    browser.tabs.onCreated.addListener(this.onCreatedHandler);
+    browser.tabs.onUpdated.addListener(this.onTabUpdatedHandler);
+    browser.tabs.onActivated.addListener(this.onTabActivatedHandler);
+    // browser.history.onVisited.addListener(this.onVisitedHandler);
+    browser.webNavigation.onCommitted.addListener(this.onCommittedNavigationHandler);
+    browser.webNavigation.onBeforeNavigate.addListener(this.onBeforeNavigationHandler);
 
     if (browser.browserAction.setBadgeTextColor) {
       browser.browserAction.setBadgeTextColor({ color: '#FFF' });
     }
   }
+
+  disable(){
+    console.log('disable logger')
+    browser.tabs.onCreated.removeListener(this.onCreatedHandler);
+    browser.tabs.onUpdated.removeListener(this.onTabUpdatedHandler);
+    browser.tabs.onActivated.removeListener(this.onTabActivatedHandler);
+    // browser.history.onVisited.removeListener(this.onVisitedHandler);
+    browser.webNavigation.onCommitted.removeListener(this.onCommittedNavigationHandler);
+    browser.webNavigation.onBeforeNavigate.removeListener(this.onBeforeNavigationHandler);
+
+    browser.browserAction.setBadgeText({ text: '' });
+    // if (browser.browserAction.setBadgeTextColor) {
+    //   browser.browserAction.setBadgeTextColor({ color: '#FFF' });
+    // }
+  }
+
   logRequest(details) {
     const { type, url, tabId } = details;
 
@@ -77,18 +97,18 @@ class Logger {
       const tab = RequestManager.getTab(tabId);
       const nb = this.getNumberBlocked(tabId);
 
-      // console.log('updateBadgeNumber', nb, tab);
+      console.log('updateBadgeNumber', nb, tab);
 
       let str = '';
       let color = '#FFFFFF';
       if (tab && !isNaN(nb)) {
         if (nb > 0.25) {
-          str = 'coal';
+          str = 'SHIT';
           color = '#625300';
         }
       }
 
-      browser.browserAction.setBadgeText({ text: str });
+      browser.browserAction.setBadgeText({ text: str, tabId: tabId });
       browser.browserAction.setBadgeBackgroundColor({ color: color });
     }
 
@@ -126,35 +146,6 @@ class Logger {
     }
     return -1;
   }
-}
-
-function isAmazon(details) {
-  const headers = details.responseHeaders;
-  const matches = [
-    ['x-amz-cf-pop', -1],
-    ['x-amz-cf-id', -1],
-    ['x-amz-request-id', -1],
-    ['x-amz-id', -1],
-    ['x-amz-id-2', -1],
-    ['x-amz-meta-s3cmd-attrs', -1],
-    ['vary', '-amzn-'],
-    ['via', 'cloudfront'],
-    ['x-cache', 'cloudfront'],
-    ['server', 'amazon'],
-    ['server', 'amazons3'],
-  ];
-  
-  let isAmazon = false;
-  for (let i = 0, lg = headers.length; i<lg; i++) {
-    for (let j = 0, lgj = matches.length; j<lgj; j++) {
-      if (headers[i].name.toLowerCase() === matches[j][0]) {
-        if (headers[i].value.toLowerCase().indexOf(matches[j][1]) !== -1 || matches[j][1] === -1) {
-          return true;
-        }
-      } 
-    }
-  }
-  return false;
 }
 
 let logger = new Logger();

@@ -1,22 +1,29 @@
 import browser from 'webextension-polyfill';
 import { formatDotcoms, amazon } from '../data/amazon_urls';
 
+let isBlocking = false
 export function block(){
 
-  browser.webRequest.onBeforeRequest.addListener(
-    blockDotComs,
-    {
-      urls: formatDotcoms(amazon),
-      types: ['main_frame', 'sub_frame'],
-    },
-    ['blocking']
-  );
+  if(!isBlocking){
+    isBlocking = true
+    browser.webRequest.onBeforeRequest.addListener(
+      blockDotComs,
+      {
+        urls: formatDotcoms(amazon),
+        types: ['main_frame', 'sub_frame'],
+      },
+      ['blocking']
+    );
+  }
 
 }
 
 export function unblock(){
   
-  browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
+  if(isBlocking){
+    isBlocking = false
+    browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
+  }
   
 }
 
