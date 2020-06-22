@@ -1,5 +1,6 @@
 import browser from 'webextension-polyfill';
 import { formatDotcoms, amazon } from '../data/amazon_urls';
+import { formatedCssRules } from '../data/css_rules';
 
 let isDegrading = false
 
@@ -42,17 +43,31 @@ function onTabUpdate(tabId, changeInfo, tab){
     if (match) {
       for (let i = 0, lg = amazon.length; i<lg; i++) {
         if (tab.url.indexOf(amazon[i]) !== -1) {
-          browser.tabs.insertCSS(tabId, {
-            code: `
+          console.log('degrade', amazon[i]);
+          let specificRules = getDegradedCSS(amazon[i]);
+          let code = `
               * { transition: none !important; animation: none !important; }
               body { filter: grayscale(1); }
-              `
+              ${specificRules}
+              `;
+
+          browser.tabs.insertCSS(tabId, {
+            code: code
           });
         }
       } 
     }
   }
 }
+
+function getDegradedCSS( website ){
+  if(formatedCssRules[ website ]){
+    return formatedCssRules[ website ] + '{ display:none!important; }';
+  }else{
+    return '';
+  }
+}
+
 
 function blockAssets(requestDetails) {
   return {

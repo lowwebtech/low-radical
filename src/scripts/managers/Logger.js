@@ -56,7 +56,6 @@ class Logger {
   }
 
   disable(){
-    console.log('disable logger')
     browser.tabs.onCreated.removeListener(this.onCreatedHandler);
     browser.tabs.onUpdated.removeListener(this.onTabUpdatedHandler);
     browser.tabs.onActivated.removeListener(this.onTabActivatedHandler);
@@ -92,12 +91,11 @@ class Logger {
       this.updateBadgeNumber(tabId);
     }, delay);
   }
+  
   updateBadgeNumber(tabId) {
     if (tabId !== -1 && this.currentTab && tabId === this.currentTab.tabId) {
       const tab = RequestManager.getTab(tabId);
       const nb = this.getNumberBlocked(tabId);
-
-      console.log('updateBadgeNumber', nb, tab);
 
       let str = '';
       let color = '#FFFFFF';
@@ -111,24 +109,8 @@ class Logger {
       browser.browserAction.setBadgeText({ text: str, tabId: tabId });
       browser.browserAction.setBadgeBackgroundColor({ color: color });
     }
-
-    /*let str = '';
-    let color;
-    if (isNaN(nb) || nb === -1 || !tab) {
-      str = '';
-      browser.browserAction.setBadgeText({ text: str });
-    }else if(tab) {
-      if (nb > 0.3) {
-        color = '#4d3800';
-      }else{
-        color = '#00b900';
-      }
-      browser.browserAction.setBadgeText({ text: str });
-      browser.browserAction.setBadgeBackgroundColor({ color: color });      
-    }*/
-
-    
   }
+
   getNumberBlocked(tabId) {
     if (this.logs[tabId]) {
       let logs = this.logs[tabId];
