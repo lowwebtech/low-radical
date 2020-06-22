@@ -8,7 +8,15 @@ import {
 const cssRules = [
   {
     urls: amazon_dotcoms,
-    css: '#buybox'
+    css: `
+      #buybox,
+      #nav-link-accountList,
+      #nav-orders,
+      #nav-cart,
+      #price,
+      #price-block,
+      .masrw-buy-box
+    `
   },
   {
     urls: abe_dotcoms,

@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
   const hostname = getOriginHostname().replace('www.', '');
+  document.title = hostname + ' is blocked by low—radical';
   document.querySelector('h1 span').innerText = hostname;
 })
 

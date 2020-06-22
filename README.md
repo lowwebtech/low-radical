@@ -1,6 +1,7 @@
 # Low—radical
 
-Cette extension lutte contre Amazon. Elle bloque les sites e-commerce d'Amazon, dégrade les sites appartenants à Amazon ou limite l'utilisation des serveurs AWS.
+This extension fights against Amazon. It blocks Amazon's e-commerce sites, hides "Buy" buttons and degrades sites belonging to Amazon or using AWS servers.
+
 
 ## Why ?
 
@@ -10,32 +11,39 @@ Amazon is the first GAFAM services that Low—radical aims to boycott. Why? Here
 - Amazon exploits workers, fights unions and fights tax laws that would support local economies.
 - Amazon creates catastrophic packaging waste and destroys millions of unsold items to free spaces in its warehouses.
 - Amazon is creating a huge monopoly on online commerce and the infrastructure for selling on the internet
-- Unfair competition, sale at a loss, day one == always more, amazon prime (sale of film to capture the consumer), always more consumption, globalization 2.0
-- optimization of business and profits for a minority rather than distribution, improvement of quality and reduction of working time (1 Amazon job destroys 2-3 jobs)
+- Amazon tracks, creates, optimizes, analyzes all our needs to make us consume as much as possible at the lowest price whatever the consequences, especially for employment (1 Amazon job destroys 2-3 jobs) 
 
 
 ## How ?
 
-To fight against Amazon is to attack your business, and your business is online commerce and the sale of your AWS infrastructure.
+To fight Amazon, you have to attack your business and your business is online commerce and the sale of AWS infrastructure.
 
-So here's what the extension does:
-- blocks Amazon e-commerce sites, a message will be displayed instead. It is therefore no longer possible to buy on Amazon when the extension is activated. This limits online sales through Amazon.
-- blocks unnecessary files of type: font, media (video / sound), iframe and object for all Amazon sites as well as on the main Amazon CDNs (cloudfront.net, amazonaws.com ...). This limits the use of AWS servers powered by fossil energy.
-- a 'gray level' filter is applied to all of the sites owned by Amazon, finally the sites that are not blocked :)
-- displays a 'coal' or 'dirt' badge on the extension icon when it detects that the site you are visiting is using AWS. This lets you know that this site emits a little more CO2.
-- replace all occurrences of 'Jeff Bezos' with what you want as 'Jeff Devil Bezos'.
+So the extension lets you choose between:
+- hard mode 👊: completely block Amazon websites (a fallback will appear)
+- soft mode 🖕: block the ability to buy on an Amazon site, by removing the add to cart or purchase buttons, as well as the Basket, Account ... pages.
 
+The content therefore remains visible in soft mode 🖕, it is just downgraded:
+- grayscale filter is applied over all website
+- blocks unnecessary files of type: font, media (video / sound), iframe and object for all Amazon websites
+- and therefore no possibility to buy on Amazon
 
+The extension also attempts to limit the use of AWS servers:
+- display of a "SHIT" badge on websites using AWS servers.
+- blocking unnecessary files from Amazon CDNs
+
+And in addition, you can modify all occurrences of the name Jeff Bezos, by default 'Jeff 🖕Bezos' (stay calm, this finger is just pointing to the sky ... the moon ... blueorigin ...)
 
 
 ## TODO
-- fallback page
-- options
-- level of radicality
-- soft radicality : 
-    + dark-pattern
-    + insert messages or advices to limit amazon 
-    + redirect to bookstore (eg Amazon Killer)
+- force block webrequest to cart and checkout
+- block widget to products
+- low button on website hosted by AWS
+- options by website
+- dark-pattern
+- ui
+- fallback text
+- options coal/shit
+- add to link to bookstore (ISBN)
 
 
 
