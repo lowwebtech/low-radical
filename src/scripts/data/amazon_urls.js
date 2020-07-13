@@ -25,45 +25,59 @@ export const corp_dotcoms = [].concat(
     'amazon.science',
     'amazon.care',
 
-    'mturk.com', 
     'amzn.to',
+    'twitch.tv', 
 
+    // mode
     'zappos.com',
     'eastdane.com',
     '6pm.com',
+    'shopbop.com', 
+
+    // shop
+    'woot.com', 
+    'fabric.com', 
     'pillpack.com',
+    'wholefoodsmarket.com', 
+    'wholefoodsmarket.co.uk',
+
+    // book
     'goodreads.com', 
     'bookfinder.com',
     'librarything.com',
     'bookdepository.com',
-    'eero.com',
-    'sqrrl.com',
 
-    'acx.com',
-
-    'twitch.tv', 
-    'wholefoodsmarket.com', 'wholefoodsmarket.co.uk',
+    // AWS
+    'createspace.com',
+    'cloudendure.com',
+    
+    // press
     'washingtonpost.com',
     'imdb.com', 
-    'createspace.com',
-    'blueorigin.com',
-    'alexa.com', 
-    'fabric.com', 
-    'cloudendure.com',
-    'ring.com',
-    'fillz.com', 
     'boxofficemojo.com',
-    'shopbop.com', 
-    'withoutabox.com', 
     'dpreview.com', 
-    'lexcycle.com', 
-    'woot.com', 
-    'blinkforhome.com', 'blinkforhome.co.uk', 'blinkforhome.de', 
 
+    // tools
+    'mturk.com', 
+    'eero.com',
+    'ring.com',
+    'alexa.com', 
+    'acx.com',
+    'lexcycle.com', 
+    
+    // megalo
+    'blueorigin.com',
     'bezosexpeditions.com', 
     'bezosdayonefund.org', 
     'bezosfamilyfoundation.org', 
+    'blinkforhome.com', 'blinkforhome.co.uk', 'blinkforhome.de', 
     '10000yearclock.net',
+
+    // other
+    'withoutabox.com', 
+    'sqrrl.com',
+    'fillz.com',     
+
   ]
 );
 
