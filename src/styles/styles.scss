@@ -23,9 +23,19 @@ hr{
 
 input[type=text]{
   border: 1px solid black;
-  display: inline-block;
 }
 
 b{
   font-size: 1.5em;
+}
+
+.optional{
+  &__value{
+    display: none;
+  }
+  &--active{
+    .optional__value{
+      display: block;
+    }
+  }
 }
