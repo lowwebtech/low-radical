@@ -15,7 +15,7 @@ export const aboutamazon_dotcoms = [
   'aboutamazon.eu', 'aboutamazon.com', 'aboutamazon.co.uk', 'aboutamazon.it', 'aboutamazon.com', 'aboutamazon.fr', 'aboutamazon.in', 'aboutamazon.de',
 ];
 
-export const corp_dotcoms = audible_dotcoms.concat( 
+export const corp_dotcoms = [].concat( 
   audible_dotcoms,
   abe_dotcoms,
   comixology_dotcoms,
@@ -29,17 +29,23 @@ export const corp_dotcoms = audible_dotcoms.concat(
     'amzn.to',
 
     'zappos.com',
+    'eastdane.com',
+    '6pm.com',
     'pillpack.com',
     'goodreads.com', 
     'bookfinder.com',
     'librarything.com',
+    'bookdepository.com',
     'eero.com',
     'sqrrl.com',
+
+    'acx.com',
 
     'twitch.tv', 
     'wholefoodsmarket.com', 'wholefoodsmarket.co.uk',
     'washingtonpost.com',
     'imdb.com', 
+    'createspace.com',
     'blueorigin.com',
     'alexa.com', 
     'fabric.com', 
