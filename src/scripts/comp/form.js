@@ -1,24 +1,41 @@
 import browser from 'webextension-polyfill';
 
+
+const replaceByEl = document.querySelector('input[name="replaceBy"]')
+const awsDetectEl = document.querySelector('input[name="awsDetect"]')
+
 function save() {
-  browser.storage.local.set({
+  const data = {
     blockType: document.querySelector('input[name="blockType"]:checked').value,
-    replaceBy: document.querySelector('input[name="replaceBy"]').value,
-    awsDetect: document.querySelector('input[name="awsDetect"]').checked,
-  });
+  }
+
+  if(replaceByEl){
+    data.replaceBy = replaceByEl.value
+  }
+  if(awsDetectEl){
+    data.awsDetect = awsDetectEl.value
+  }
+  
+  browser.storage.local.set( data );
 }
 
 function restore() {
   let getting = browser.storage.local.get(['blockType', 'replaceBy', 'awsDetect']);
   getting.then(
     (result) => {
-      let replaceBy = result.replaceBy || 'Jeff 🖕 Bezos'
       let blockType = result.blockType || 'blockAll'
-      let awsDetect = result.awsDetect
-      console.log('AWS', result.awsDetect, awsDetect)
-      document.querySelector('input[name="replaceBy"]').value = replaceBy
       document.querySelector('input[value="'+ blockType + '"]').checked = true
-      document.querySelector('input[name="awsDetect"]').checked = awsDetect
+
+      if(replaceByEl){
+        let replaceBy = result.replaceBy || 'Jeff 🖕 Bezos'
+        replaceByEl.value = replaceBy 
+      }
+
+      if(awsDetectEl){
+        console.log('AWS', result.awsDetect, awsDetect) 
+        let awsDetect = result.awsDetect
+        awsDetectEl.checked = awsDetect
+      }
     }, 
     (error) => {
       console.log(`Error: ${error}`);

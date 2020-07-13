@@ -4,7 +4,7 @@ const manifestInput = {
     manifest_version: 2,
     name: '__MSG_extensionName__',
     version: pkg.version,
-    default_locale: 'fr_FR',
+    default_locale: 'en_US',
     web_accessible_resources: [
         "assets/*",
     ],

@@ -101,7 +101,7 @@ class Logger {
       let color = '#FFFFFF';
       if (tab && !isNaN(nb)) {
         if (nb > 0.25) {
-          str = 'SHIT';
+          str = 'AWS';
           color = '#625300';
         }
       }
