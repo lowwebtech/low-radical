@@ -23,13 +23,18 @@ export const corp_dotcoms = audible_dotcoms.concat(
   [
     'amazon.work', 
     'amazon.science',
+    'amazon.care',
 
     'mturk.com', 
     'amzn.to',
-    
+
+    'zappos.com',
+    'pillpack.com',
     'goodreads.com', 
     'bookfinder.com',
     'librarything.com',
+    'eero.com',
+    'sqrrl.com',
 
     'twitch.tv', 
     'wholefoodsmarket.com', 'wholefoodsmarket.co.uk',
