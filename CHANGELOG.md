@@ -3,6 +3,7 @@
 - optional replacement of "Jeff Bezos"
 - optional detection of AWS servers
 - new Amazon domains : amazon.care, zappos.com, pillpack.com, eero.com, sqrrl.com, eastdane.com, 6pm.com, bookdepository.com, acx.com, createspace.com
+- remove webNavigation permission
 
 ## 0.0.2
 

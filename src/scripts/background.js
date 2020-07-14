@@ -30,7 +30,7 @@ function start(details) {
     }
 
     function onGot(result){
-      const type = result.blockType || 'blockAll';
+      const type = result.blockType;
       const awsDetect = result.awsDetect;
 
       updateBlockingType( type )
@@ -45,6 +45,11 @@ function start(details) {
 }
 
 function updateAWSdetect(aws){
+  
+  if(aws && aws.value){
+    Logger.setBadgeText( aws.value )
+  }
+
   if(aws && aws.active) aws_detect( aws.value )
   else aws_undetect()
 }
