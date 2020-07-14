@@ -5,7 +5,8 @@ import {
   comixology_dotcoms,
 } from './amazon_urls';
 
-const cssRules = [
+
+export const cssRules = [
   {
     urls: amazon_dotcoms,
     css: `
@@ -74,10 +75,16 @@ const cssRules = [
   }
 ];
 
+export function getDegradedCSS( website ){
+  if(formatedCssRules[ website ]){
+    return formatedCssRules[ website ] + '{ display:none!important; }';
+  }else{
+    return '';
+  }
+}
+
 function parseCSSRules(rules){
-
   let dict = {};
-
   for(let i = 0, lg = cssRules.length; i<lg; i++){
     let cssRule = cssRules[i];
     for(let j = 0, lg = cssRule.urls.length; j<lg; j++){
@@ -87,8 +94,8 @@ function parseCSSRules(rules){
       }
     }
   }
-
   return dict;
 }
 
 export const formatedCssRules = parseCSSRules(cssRules);
+export const hiddenCSSRules = getDegradedCSS(  );

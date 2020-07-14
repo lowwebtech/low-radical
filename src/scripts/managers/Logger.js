@@ -24,33 +24,32 @@ class Logger {
         // this.updateBadgeNumber(tabId);
       }
     };
-    this.onCommittedNavigationHandler = info => {
-      // console.log('onCommitted', info.transitionType, info);
-      if (info.transitionType === 'reload' || info.transitionType === 'link') {
-        this.logs[info.tabId] = [];
-        this.updateBadgeNumber(info.tabId);
-      }
-    };
-    this.onBeforeNavigationHandler = info => {
-      // console.log('onBeforeNavigate', info);
-      if (info.frameId === 0) {
-        this.logs[info.tabId] = [];
-        this.updateBadgeNumber(info.tabId);
-      }
-    };
+    // this.onCommittedNavigationHandler = info => {
+    //   // console.log('onCommitted', info.transitionType, info);
+    //   if (info.transitionType === 'reload' || info.transitionType === 'link') {
+    //     this.logs[info.tabId] = [];
+    //     this.updateBadgeNumber(info.tabId);
+    //   }
+    // };
+    // this.onBeforeNavigationHandler = info => {
+    //   // console.log('onBeforeNavigate', info);
+    //   if (info.frameId === 0) {
+    //     this.logs[info.tabId] = [];
+    //     this.updateBadgeNumber(info.tabId);
+    //   }
+    // };
   }
 
-  enable( text ) {
+  enable() {
     this.currentTab = undefined;
-    this.badgeText = text
 
     browser.tabs.onCreated.addListener(this.onCreatedHandler);
     browser.tabs.onUpdated.addListener(this.onTabUpdatedHandler);
     browser.tabs.onActivated.addListener(this.onTabActivatedHandler);
     // browser.history.onVisited.addListener(this.onVisitedHandler);
-    browser.webNavigation.onCommitted.addListener(this.onCommittedNavigationHandler);
-    browser.webNavigation.onBeforeNavigate.addListener(this.onBeforeNavigationHandler);
-
+    // browser.webNavigation.onCommitted.addListener(this.onCommittedNavigationHandler);
+    // browser.webNavigation.onBeforeNavigate.addListener(this.onBeforeNavigationHandler);
+    
     if (browser.browserAction.setBadgeTextColor) {
       browser.browserAction.setBadgeTextColor({ color: '#FFF' });
     }
@@ -61,8 +60,8 @@ class Logger {
     browser.tabs.onUpdated.removeListener(this.onTabUpdatedHandler);
     browser.tabs.onActivated.removeListener(this.onTabActivatedHandler);
     // browser.history.onVisited.removeListener(this.onVisitedHandler);
-    browser.webNavigation.onCommitted.removeListener(this.onCommittedNavigationHandler);
-    browser.webNavigation.onBeforeNavigate.removeListener(this.onBeforeNavigationHandler);
+    // browser.webNavigation.onCommitted.removeListener(this.onCommittedNavigationHandler);
+    // browser.webNavigation.onBeforeNavigate.removeListener(this.onBeforeNavigationHandler);
 
     browser.browserAction.setBadgeText({ text: '' });
     // if (browser.browserAction.setBadgeTextColor) {
@@ -128,6 +127,10 @@ class Logger {
       }
     }
     return -1;
+  }
+
+  setBadgeText( text ){
+    this.badgeText = text
   }
 }
 
