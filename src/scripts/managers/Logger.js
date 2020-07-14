@@ -40,8 +40,9 @@ class Logger {
     };
   }
 
-  enable() {
+  enable( text ) {
     this.currentTab = undefined;
+    this.badgeText = text
 
     browser.tabs.onCreated.addListener(this.onCreatedHandler);
     browser.tabs.onUpdated.addListener(this.onTabUpdatedHandler);
@@ -101,7 +102,7 @@ class Logger {
       let color = '#FFFFFF';
       if (tab && !isNaN(nb)) {
         if (nb > 0.25) {
-          str = 'SHIT';
+          str = this.badgeText;
           color = '#625300';
         }
       }

@@ -45,7 +45,7 @@ function start(details) {
 }
 
 function updateAWSdetect(aws){
-  if(aws !== false) aws_detect()
+  if(aws && aws.active) aws_detect( aws.value )
   else aws_undetect()
 }
 
@@ -62,5 +62,21 @@ function updateBlockingType(type){
 }
 
 browser.runtime.onInstalled.addListener(() => {
+  // default params
+  browser.storage.local.set({
+    blockType: 'blockAll',
+    awsDetect: {
+      active: true,
+      value: 'AWS'
+    },
+    replaceBy: {
+      active: false,
+      value: 'Jeff fucking Bezos'
+    },
+  });
+
   start()
+
+  browser.runtime.openOptionsPage()
+  
 });

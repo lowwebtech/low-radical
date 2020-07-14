@@ -7,11 +7,11 @@ function logResponse(details) {
   Logger.logRequest(details);
 }
 
-export function aws_detect(){
+export function aws_detect( badgeText ){
   if(!isDetectingAWS){
     isDetectingAWS = true
-    
-    Logger.enable()
+
+    Logger.enable( badgeText )
     browser.webRequest.onHeadersReceived.addListener(
       logResponse,
       { urls:['<all_urls>'] },

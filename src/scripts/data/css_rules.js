@@ -15,7 +15,8 @@ const cssRules = [
       #nav-cart,
       #price,
       #price-block,
-      .masrw-buy-box
+      .masrw-buy-box,
+      .nav-signin-tt
     `
   },
   {

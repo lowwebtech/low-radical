@@ -11,27 +11,34 @@
     <form>
       <label>
         <input type="radio" name="blockType" value="blockAll">
-        Hard mode <b>👊</b><br> 
-        block all Amazon websites
+        HARD: block all Amazon websites
       </label>
 
       <label>
         <input type="radio" name="blockType" value="degradeAll">
-        Soft mode <b>🖕</b><br> 
-        block purchase and downgrade Amazon websites
+        SOFT: block purchase and downgrade Amazon websites
       </label>
 
       <hr />
 
-      <label>
-        <b>💩</b> Display icon "SHIT" for website using AWS: <input type="checkbox" name="awsDetect">
-      </label>
-
+      <div class="optional" id="awsDetect">
+        <label>
+          Display icon text for website using AWS: 
+          <input type="checkbox" name="awsDetect" class="optional__cb">
+        </label>
+        <input type="text" name="awsDetectValue" class="optional__value">
+      </div>
+      
       <hr />
 
-      <label>
-        <b>😈</b> Replace every 'Jeff Bezos' by: <input type="text" name="replaceBy">
-      </label>
+      <div class="optional" id="replaceBy">
+        <label>
+          Replace every occurence of 'Jeff Bezos': 
+          <input type="checkbox" name="replaceBy" class="optional__cb">
+        </label>
+        <input type="text" name="replaceByValue" class="optional__value">  
+      </div>
+      
     </form>
   </body>
 </html>
