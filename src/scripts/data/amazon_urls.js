@@ -24,6 +24,8 @@ export const corp_dotcoms = [].concat(
     'amazon.work', 
     'amazon.science',
     'amazon.care',
+    'payments-amazon.com', 
+    // https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js
 
     'amzn.to',
     'twitch.tv', 
