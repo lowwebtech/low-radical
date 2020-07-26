@@ -1,3 +1,9 @@
+## 0.0.4
+
+- disable replacement of "Jeff Bezos"
+- fix background_script launch at startup
+- remove webNavigation permission
+
 ## 0.0.3
 
 - optional replacement of "Jeff Bezos"
