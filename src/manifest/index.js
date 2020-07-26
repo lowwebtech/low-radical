@@ -61,13 +61,13 @@ const manifestInput = {
         '__chrome|opera__persistent': true,
     },
 
-    content_scripts: [
-        {
-            matches: ['http://*/*', 'https://*/*'],
-            js: ['js/contentScript.bundle.js'],
-            run_at: "document_end",
-        },
-    ],
+    // content_scripts: [
+    //     {
+    //         matches: ['http://*/*', 'https://*/*'],
+    //         js: ['js/contentScript.bundle.js'],
+    //         run_at: "document_end",
+    //     },
+    // ],
 };
 
 module.exports = manifestInput;
