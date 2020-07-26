@@ -30,7 +30,7 @@ function start(details) {
     }
 
     function onGot(result){
-      const type = result.blockType || 'blockAll';
+      const type = result.blockType;
       const awsDetect = result.awsDetect;
 
       updateBlockingType( type )
@@ -45,6 +45,11 @@ function start(details) {
 }
 
 function updateAWSdetect(aws){
+  
+  if(aws && aws.value){
+    Logger.setBadgeText( aws.value )
+  }
+
   if(aws && aws.active) aws_detect( aws.value )
   else aws_undetect()
 }
@@ -61,6 +66,11 @@ function updateBlockingType(type){
   }
 }
 
+
+browser.runtime.onStartup.addListener((details) => {
+  start()
+});
+
 browser.runtime.onInstalled.addListener(() => {
   // default params
   browser.storage.local.set({
@@ -69,14 +79,26 @@ browser.runtime.onInstalled.addListener(() => {
       active: true,
       value: 'AWS'
     },
-    replaceBy: {
-      active: false,
-      value: 'Jeff fucking Bezos'
-    },
+    // replaceBy: {
+    //   active: false,
+    //   value: 'Jeff fucking Bezos'
+    // },
   });
-
   start()
-
-  browser.runtime.openOptionsPage()
-  
 });
+
+browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
+  console.log('Promise onInstalled', reason, temporary);
+  if (temporary) return; // skip during development
+  switch (reason) {
+    case 'install':
+      // {
+      // const url = browser.runtime.getURL('views/installed.html');
+      // await browser.tabs.create({ url });
+      await browser.runtime.openOptionsPage();
+      // or: await browser.windows.create({ url, type: 'popup', height: 600, width: 600, });
+      // }
+      break;
+  }
+});
+

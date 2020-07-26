@@ -65,18 +65,18 @@ class RequestManager {
       this.addTab(tabId);
     });
 
-    browser.webNavigation.onBeforeNavigate.addListener(info => {
-      if (info.frameId === 0) {
-        const hostname = getHostname(info.url);
-        if (hostname) {
-          if (!this.tabStorage[info.tabId]) {
-            this.addTab(info.tabId);
-          }
-          this.tabStorage[info.tabId].pageUrl = info.url;
-          this.tabStorage[info.tabId].domain = hostname;
-        }
-      }
-    });
+    // browser.webNavigation.onBeforeNavigate.addListener(info => {
+    //   if (info.frameId === 0) {
+    //     const hostname = getHostname(info.url);
+    //     if (hostname) {
+    //       if (!this.tabStorage[info.tabId]) {
+    //         this.addTab(info.tabId);
+    //       }
+    //       this.tabStorage[info.tabId].pageUrl = info.url;
+    //       this.tabStorage[info.tabId].domain = hostname;
+    //     }
+    //   }
+    // });
 
     browser.tabs.onActivated.addListener(tab => {
       const tabId = tab ? tab.tabId : browser.tabs.TAB_ID_NONE;

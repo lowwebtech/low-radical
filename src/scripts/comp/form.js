@@ -63,7 +63,7 @@ function save() {
 }
 
 function restore() {
-  let getting = browser.storage.local.get(['blockType', 'replaceBy', 'awsDetect']);
+  let getting = browser.storage.local.get(['blockType', 'awsDetect']); // replaceBy
   getting.then(
     (result) => {
       const blockType = result.blockType || 'blockAll'
