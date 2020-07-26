@@ -79,10 +79,10 @@ browser.runtime.onInstalled.addListener(() => {
       active: true,
       value: 'AWS'
     },
-    replaceBy: {
-      active: false,
-      value: 'Jeff fucking Bezos'
-    },
+    // replaceBy: {
+    //   active: false,
+    //   value: 'Jeff fucking Bezos'
+    // },
   });
   start()
 });
