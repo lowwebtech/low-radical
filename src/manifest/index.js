@@ -18,7 +18,7 @@ const manifestInput = {
 
     description: '__MSG_extensionDescription__',
     homepage_url: 'https://github.com/lowwebtech/low-radical',
-    short_name: 'NoAmazon',
+    short_name: 'LowRadical',
 
     permissions: ['tabs', 'storage', 'webRequest',/* 'webNavigation',*/ 'webRequestBlocking', '<all_urls>'],
     content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
@@ -43,7 +43,7 @@ const manifestInput = {
             '48': 'assets/icons/favicon-48.png',
             '128': 'assets/icons/favicon-128.png',
         },
-        default_title: 'tiny title',
+        default_title: 'LowRadical',
         '__chrome|opera__chrome_style': false,
         __firefox__browser_style: false,
     },

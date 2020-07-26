@@ -31,8 +31,6 @@ The extension also attempts to limit the use of AWS servers:
 - display of a "AWS" badge (inside topbar icon) on websites using AWS servers.
 - block unnecessary files from Amazon CDNs
 
-And in addition, you can modify all occurrences of the name Jeff Bezos, for example 'Jeff 🖕 Bezos' (stay calm, this finger is just pointing to the sky ... the moon ... blueorigin ...)
-
 
 
 ## Licence
