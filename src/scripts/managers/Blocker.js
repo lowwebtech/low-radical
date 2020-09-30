@@ -9,7 +9,7 @@ class Blocker {
     this.filterRequest(blockUrls);
   }
   filterRequest(callback, filter = {}, extraInfoSpec = ['blocking']) {
-    filter = Object.assign({ urls: ['<all_urls>'] }, filter);
+    filter = Object.assign({ urls: ['*://*/*'] }, filter);
 
     const blockRequest = new BlockRequest(callback, filter);
     blockRequests.push(blockRequest);

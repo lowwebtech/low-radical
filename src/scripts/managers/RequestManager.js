@@ -2,7 +2,7 @@ import browser from 'webextension-polyfill';
 import getHostname from '../utils/get-hostname';
 
 const networkFilters = {
-  urls: ['<all_urls>'],
+  urls: ['*://*/*'],
 };
 
 class RequestManager {

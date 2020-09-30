@@ -14,7 +14,7 @@ export function aws_detect( badgeText ){
     Logger.enable()
     browser.webRequest.onHeadersReceived.addListener(
       logResponse,
-      { urls:['<all_urls>'] },
+      { urls:['*://*/*'] },
       ["responseHeaders"]
     );
   }
