@@ -1,5 +1,56 @@
 export const amazon_dotcoms = [
   'amazon.com', 'amazon.com.au', 'amazon.de', 'amazon.com.br', 'amazon.ca', 'amazon.cn', 'amazon.es', 'amazon.in', 'amazon.it', 'amazon.co.jp', 'amazon.mx', 'amazon.nl', 'amazon.co.uk', 'amazon.ae', 'amazon.com.tr', 'amazon.ca', 'amazon.fr', 'amazon.com.sg', 'amazon.sg', 'amazon.ch', 
+
+  'amazon.eu',
+  'amazon.nl',
+  'amazon.at',
+  'amazon.co',
+  'amazon.cz',
+  'amazon.dk',
+  'amazon.gr',
+  'amazon.hu',
+  'amazon.id',
+  'amazon.ie',
+  'amazon.io',
+  'amazon.jp',
+  'amazon.kr',
+  'amazon.lu',
+  'amazon.me',
+  'amazon.mk',
+  'amazon.no',
+  'amazon.or',
+  'amazon.pl',
+  'amazon.pt',
+  'amazon.ro',
+  'amazon.rs',
+  'amazon.ru',
+  'amazon.sa',
+  'amazon.su',
+  'amazon.clothing',
+  'amazon.company',
+  'amazon.cruises',
+  'amazon.dog',
+  'amazon.energy',
+  'amazon.express',
+  'amazon.fund',
+  'amazon.game',
+  'amazon.gd',
+  'amazon.gent',
+  'amazon.hockey',
+  'amazon.international',
+  'amazon.jobs',
+  'amazon.kiwi',
+  'amazon.ltda',
+  'amazon.press',
+  'amazon.re',
+  'amazon.salon',
+  'amazon.shoophing',
+  'amazon.soccer',
+  'amazon.tickets',
+  'amazon.tienda',
+  'amazon.tours',
+  'amazon.training',
+  'amazon.tv',
 ];
 
 export const audible_dotcoms = [
@@ -24,8 +75,28 @@ export const corp_dotcoms = [].concat(
     'amazon.work', 
     'amazon.science',
     'amazon.care',
-    'payments-amazon.com', 
+    'amazon.jobs',
+
+    'amazonvideo.com',
+    'primevideo.com',
+
     // https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js
+
+    'amazon-adsystem.com',
+    'amazon-cornerstone.com',
+    'amazontrust.com',
+
+    'assoc-amazon.fr',
+    'assoc-amazon.net',
+    'assoc-amazon.ca',
+    'assoc-amazon.co.uk',
+    'assoc-amazon.com',
+    'assoc-amazon.com.au',
+    'assoc-amazon.cn',
+    'assoc-amazon.de',
+    'assoc-amazon.es',
+    'assoc-amazon.fr',
+    'assoc-amazon.it',
 
     'amzn.to',
     'twitch.tv', 
@@ -52,6 +123,8 @@ export const corp_dotcoms = [].concat(
     // AWS
     'createspace.com',
     'cloudendure.com',
+    'elasticbeanstalk.com',
+    'awsstatic.com',
     
     // press
     'washingtonpost.com',
@@ -63,7 +136,7 @@ export const corp_dotcoms = [].concat(
     'mturk.com', 
     'eero.com',
     'ring.com',
-    'alexa.com', 
+    'alexa.com', 'amazonalexa.com',
     'acx.com',
     'lexcycle.com', 
     
@@ -74,12 +147,17 @@ export const corp_dotcoms = [].concat(
     'bezosfamilyfoundation.org', 
     'blinkforhome.com', 'blinkforhome.co.uk', 'blinkforhome.de', 
     '10000yearclock.net',
+    'seattlespheres.com',
+
+    // payments
+    'amazonpay.in',
+    'payments-amazon.com', 
+    'amazonpayments.com',
 
     // other
     'withoutabox.com', 
     'sqrrl.com',
-    'fillz.com',     
-
+    'fillz.com',
   ]
 );
 
@@ -87,7 +165,12 @@ export const corp_cdn_dotcoms = [
   'media-amazon.com', 
   'twitchcdn.net',
   'cloudfront.net',
-  'amazonaws.com'
+  'amazonaws.com',
+  'images-amazon.com',
+  'ssl-images-amazon.com',
+  'aiv-cdn.net',
+  'aiv-delivery.net',
+  'media-imdb.com'
 ];
 
 export const amazon = amazon_dotcoms.concat(corp_dotcoms);
