@@ -1,3 +1,9 @@
+## 0.0.5
+
+- remove functionality for changing Jeff Bezos's name -> no content_script.js anymore
+- testing, linting and releasing CLI
+- new amazon urls
+
 ## 0.0.4
 
 - disable replacement of "Jeff Bezos"
