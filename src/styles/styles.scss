@@ -9,32 +9,31 @@ body {
   padding: 10px;
 }
 
-form{
-
+form {
 }
-label{
+label {
   display: block;
 }
 
-hr{
+hr {
   border-top: 1px dotted black;
   margin: 6px 0;
 }
 
-input[type=text]{
+input[type="text"] {
   border: 1px solid black;
 }
 
-b{
+b {
   font-size: 1.5em;
 }
 
-.optional{
-  &__value{
+.optional {
+  &__value {
     display: none;
   }
-  &--active{
-    .optional__value{
+  &--active {
+    .optional__value {
       display: block;
     }
   }

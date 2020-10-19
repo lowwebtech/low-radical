@@ -1,25 +1,27 @@
-import browser from 'webextension-polyfill';
-import getHostname from '../utils/get-hostname';
+import browser from "webextension-polyfill";
 
 const networkFilters = {
-  urls: ['*://*/*'],
+  urls: ["*://*/*"],
 };
 
 class RequestManager {
   constructor() {
     this.tabStorage = {};
   }
+
   getTab(tabId) {
     return this.tabStorage[tabId.toString()];
   }
+
   getCurrentTab() {
     // return this.tabStorage[browser.tabs.getCurrent()];
   }
+
   init() {
     browser.webRequest.onBeforeRequest.addListener(
-      details => {
+      (details) => {
         const { tabId, requestId } = details;
-        if (!this.tabStorage.hasOwnProperty(tabId)) {
+        if (!Object.prototype.hasOwnProperty.call(this.tabStorage, tabId)) {
           this.addTab(tabId);
         }
         if (this.tabStorage[tabId.toString()]) {
@@ -27,41 +29,59 @@ class RequestManager {
             requestId: requestId,
             url: details.url,
             startTime: details.timeStamp,
-            status: 'pending',
+            status: "pending",
           };
         }
         return {};
       },
       networkFilters,
-      ['blocking']
+      ["blocking"]
     );
 
-    browser.webRequest.onCompleted.addListener(details => {
+    browser.webRequest.onCompleted.addListener((details) => {
       const { tabId, requestId } = details;
-      if (!this.tabStorage.hasOwnProperty(tabId.toString()) || !this.tabStorage[tabId.toString()].requests.hasOwnProperty(requestId)) {
+      if (
+        !Object.prototype.hasOwnProperty.call(
+          this.tabStorage,
+          tabId.toString()
+        ) ||
+        !Object.prototype.hasOwnProperty.call(
+          this.tabStorage[tabId.toString()].requests,
+          requestId
+        )
+      ) {
         return;
       }
       const request = this.tabStorage[tabId.toString()].requests[requestId];
       Object.assign(request, {
         endTime: details.timeStamp,
         requestDuration: details.timeStamp - request.startTime,
-        status: 'complete',
+        status: "complete",
       });
     }, networkFilters);
 
-    browser.webRequest.onErrorOccurred.addListener(details => {
+    browser.webRequest.onErrorOccurred.addListener((details) => {
       const { tabId, requestId } = details;
-      if (!this.tabStorage.hasOwnProperty(tabId.toString()) || !this.tabStorage[tabId.toString()].requests.hasOwnProperty(requestId)) {
+      if (
+        !Object.prototype.hasOwnProperty.call(
+          this.tabStorage,
+          tabId.toString()
+        ) ||
+        !Object.prototype.hasOwnProperty.call(
+          this.tabStorage[tabId.toString()].requests,
+          requestId
+        )
+      ) {
         return;
       }
       const request = this.tabStorage[tabId.toString()].requests[requestId];
       Object.assign(request, {
         endTime: details.timeStamp,
-        status: 'error',
+        status: "error",
       });
     }, networkFilters);
 
-    browser.tabs.onUpdated.addListener(tabId => {
+    browser.tabs.onUpdated.addListener((tabId) => {
       this.addTab(tabId);
     });
 
@@ -78,30 +98,35 @@ class RequestManager {
     //   }
     // });
 
-    browser.tabs.onActivated.addListener(tab => {
+    browser.tabs.onActivated.addListener((tab) => {
       const tabId = tab ? tab.tabId : browser.tabs.TAB_ID_NONE;
       this.currentTabId = tabId;
       this.addTab(tabId);
     });
 
-    browser.tabs.onRemoved.addListener(tabId => {
-      if (!this.tabStorage.hasOwnProperty(tabId)) {
+    browser.tabs.onRemoved.addListener((tabId) => {
+      if (!Object.prototype.hasOwnProperty.call(this.tabStorage, tabId)) {
         return;
       }
       delete this.tabStorage[tabId];
     });
   }
+
   addTab(tabId) {
-    if (tabId && !this.tabStorage.hasOwnProperty(tabId) && tabId !== -1) {
+    if (
+      tabId &&
+      !Object.prototype.hasOwnProperty.call(this.tabStorage, tabId) &&
+      tabId !== -1
+    ) {
       this.tabStorage[tabId] = {
         id: tabId,
         requests: {},
-        url: '',
+        url: "",
         registerTime: new Date().getTime(),
       };
     }
   }
 }
 
-let requestManager = new RequestManager();
+const requestManager = new RequestManager();
 export default requestManager;

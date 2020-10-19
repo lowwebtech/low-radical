@@ -19,11 +19,11 @@
 //             let replacedText = text.replace(/Jeff Bezos/gi, value).replace(/Jeffrey Bezos/gi, value).replace(/Jeffrey Preston Bezos/gi, value);
 //             if (replacedText !== text) {
 //               element.replaceChild(document.createTextNode(replacedText), node);
-//             } 
+//             }
 //           }
 //         }
 //       }
-//     } 
+//     }
 //   }
 // }
 

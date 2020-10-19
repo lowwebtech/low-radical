@@ -1,2 +1,2 @@
-require('./comp/form.js')
+require("./comp/form.js");
 // import * from 'comp/form.js'

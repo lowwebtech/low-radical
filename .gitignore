@@ -102,3 +102,6 @@ public/
 
 ## Build directory
 extension
+
+.sublime-*
+*.code-workspace

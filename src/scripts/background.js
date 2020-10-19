@@ -1,97 +1,93 @@
-import browser from 'webextension-polyfill';
+import browser from "webextension-polyfill";
 
-import { block, unblock } from './comp/block';
-import { degrade, undegrade } from './comp/degrade';
-import { aws_detect, aws_undetect } from './comp/aws_detect';
+import { block, unblock } from "./comp/block";
+import { degrade, undegrade } from "./comp/degrade";
+import { awsDetect, awsUndetect } from "./comp/aws-detect";
 
-import Logger from './managers/Logger';
-import RequestManager from './managers/RequestManager';
+import Logger from "./managers/Logger";
+import RequestManager from "./managers/RequestManager";
 
 // Logger.init();
 RequestManager.init();
 
-let blockType = '';
+let blockType = "";
 
 function start(details) {
   setTimeout(() => {
-
-    let gettingItem = browser.storage.local.get(['blockType', 'awsDetect']);
+    const gettingItem = browser.storage.local.get(["blockType", "awsDetect"]);
     gettingItem.then(onGot, onError);
 
-    browser.storage.onChanged.addListener(onChanged)
+    browser.storage.onChanged.addListener(onChanged);
 
-    function onChanged(result){
-      if(result.blockType){
-        updateBlockingType(result.blockType.newValue)
+    function onChanged(result) {
+      if (result.blockType) {
+        updateBlockingType(result.blockType.newValue);
       }
-      if(result.awsDetect){
-        updateAWSdetect(result.awsDetect.newValue)
+      if (result.awsDetect) {
+        updateAWSdetect(result.awsDetect.newValue);
       }
     }
 
-    function onGot(result){
+    function onGot(result) {
       const type = result.blockType;
       const awsDetect = result.awsDetect;
 
-      updateBlockingType( type )
-      updateAWSdetect( awsDetect )
+      updateBlockingType(type);
+      updateAWSdetect(awsDetect);
     }
 
-    function onError(e){
-      console.log('error', e);
+    function onError(e) {
+      console.log("error", e);
     }
-
-  },300);
+  }, 300);
 }
 
-function updateAWSdetect(aws){
-  
-  if(aws && aws.value){
-    Logger.setBadgeText( aws.value )
+function updateAWSdetect(aws) {
+  if (aws && aws.value) {
+    Logger.setBadgeText(aws.value);
   }
 
-  if(aws && aws.active) aws_detect( aws.value )
-  else aws_undetect()
+  if (aws && aws.active) awsDetect(aws.value);
+  else awsUndetect();
 }
 
-function updateBlockingType(type){
-  if(blockType !== type){
-    if(blockType === 'blockAll') unblock()
-    else if(blockType === 'degradeAll') undegrade()
+function updateBlockingType(type) {
+  if (blockType !== type) {
+    if (blockType === "blockAll") unblock();
+    else if (blockType === "degradeAll") undegrade();
 
-    blockType = type
+    blockType = type;
 
-    if(blockType === 'blockAll') block()
-    else if(blockType === 'degradeAll') degrade()
+    if (blockType === "blockAll") block();
+    else if (blockType === "degradeAll") degrade();
   }
 }
-
 
 browser.runtime.onStartup.addListener((details) => {
-  start()
+  start();
 });
 
 browser.runtime.onInstalled.addListener(() => {
   // default params
   browser.storage.local.set({
-    blockType: 'blockAll',
+    blockType: "blockAll",
     awsDetect: {
       active: true,
-      value: 'AWS'
+      value: "AWS",
     },
     // replaceBy: {
     //   active: false,
     //   value: 'Jeff fucking Bezos'
     // },
   });
-  start()
+  start();
 });
 
 browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
-  console.log('Promise onInstalled', reason, temporary);
+  console.log("Promise onInstalled", reason, temporary);
   if (temporary) return; // skip during development
   switch (reason) {
-    case 'install':
+    case "install":
       // {
       // const url = browser.runtime.getURL('views/installed.html');
       // await browser.tabs.create({ url });
@@ -101,4 +97,3 @@ browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
       break;
   }
 });
-

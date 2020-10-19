@@ -1,61 +1,56 @@
-import browser from 'webextension-polyfill';
-import { formatDotcoms, amazon } from '../data/amazon_urls';
-import { hiddenCSSRules } from '../data/css_rules';
+import browser from "webextension-polyfill";
+import { formatDotcoms, amazon } from "../data/amazon-urls";
+import { hiddenCSSRules } from "../data/css_rules";
 
-let isDegrading = false
+let isDegrading = false;
 
-export function degrade(){
-
-  if(!isDegrading){
-    isDegrading = true
+export function degrade() {
+  if (!isDegrading) {
+    isDegrading = true;
 
     // block unnecessary assets
     browser.webRequest.onBeforeRequest.addListener(
       blockAssets,
       {
-        urls: formatDotcoms(amazon), 
-        types: ['font', 'media', 'object', 'sub_frame']
+        urls: formatDotcoms(amazon),
+        types: ["font", "media", "object", "sub_frame"],
       },
-      ['blocking']
+      ["blocking"]
     );
 
     // insert grayscale css
     browser.tabs.onUpdated.addListener(onTabUpdate);
-
   }
-
 }
 
-export function undegrade(){
-
-  if(isDegrading){
-    isDegrading = false
-    browser.webRequest.onBeforeRequest.removeListener(blockAssets)
-    browser.tabs.onUpdated.removeListener(onTabUpdate) 
+export function undegrade() {
+  if (isDegrading) {
+    isDegrading = false;
+    browser.webRequest.onBeforeRequest.removeListener(blockAssets);
+    browser.tabs.onUpdated.removeListener(onTabUpdate);
   }
-
 }
 
-function onTabUpdate(tabId, changeInfo, tab){
-  if( changeInfo.status == 'loading' ){
+function onTabUpdate(tabId, changeInfo, tab) {
+  if (changeInfo.status === "loading") {
     var re = new RegExp("^(http|https)://", "i");
     var match = re.test(tab.url);
     if (match) {
-      for (let i = 0, lg = amazon.length; i<lg; i++) {
+      for (let i = 0, lg = amazon.length; i < lg; i++) {
         if (tab.url.indexOf(amazon[i]) !== -1) {
-          console.log('degrade', amazon[i]);
-          
-          let code = `
+          console.log("degrade", amazon[i]);
+
+          const code = `
               * { transition: none !important; animation: none !important; }
               body { filter: grayscale(1); }
               ${hiddenCSSRules}
               `;
 
           browser.tabs.insertCSS(tabId, {
-            code: code
+            code: code,
           });
         }
-      } 
+      }
     }
   }
 }
