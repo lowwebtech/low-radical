@@ -1,11 +1,11 @@
-# Low—radical
+# low—radical
 
 This extension fights against Amazon. It blocks Amazon websites, hides "Buy" buttons and degrades sites belonging to Amazon or using AWS servers.
 
 
 ## Why ?
 
-Amazon is the first GAFAM services that Low—radical aims to boycott. Why? Here are some explainations:
+Amazon is the first GAFAM services that low—radical aims to boycott. Why? Here are some explainations:
 
 - Amazon is largely powered by fossil fuels, more than any other big tech company.
 - Amazon exploits workers, fights unions and fights tax laws that would support local economies.

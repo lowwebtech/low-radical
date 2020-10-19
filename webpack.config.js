@@ -64,10 +64,12 @@ module.exports = {
             chunks: ['popup'],
             filename: 'popup.html',
         }),
-        new CopyWebpackPlugin([
-            { from: '_locales', to: '_locales' },
-            { from: 'src/assets', to: 'assets' },
-            ]),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: '_locales', to: '_locales' },
+                { from: 'src/assets', to: 'assets' },
+            ],
+        }),
         new WriteWebpackPlugin([{ name: manifest.name, data: Buffer.from(manifest.content) }]),
     ],
 
@@ -109,14 +111,7 @@ module.exports = {
                             sourceMap: true,
                         },
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            ident: 'postcss',
-                            // eslint-disable-next-line global-require
-                            plugins: [require('autoprefixer')()],
-                        },
-                    },
+                    'postcss-loader',
                     'resolve-url-loader',
                     'sass-loader',
                 ],
@@ -127,7 +122,7 @@ module.exports = {
     optimization: {
         minimizer: [
             new TerserPlugin({
-                cache: true,
+                // cache: true,
                 parallel: true,
             }),
             new ZipPlugin({
