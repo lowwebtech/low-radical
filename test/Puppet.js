@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const path = require('path');
 
-const pathToExtension = require('path').join(path.join(__dirname, '..', 'dist'));
+const pathToExtension = require('path').join(path.join(__dirname, '..', 'extension', 'chrome'));
 const puppeteerArgs = [];
 
 if (process.env.EXTENSION_INSTALLED === 'true') {

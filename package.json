@@ -14,14 +14,14 @@
     "build:chrome": "cross-env NODE_ENV=production cross-env TARGET_BROWSER=chrome webpack --mode=production",
     "build:firefox": "cross-env NODE_ENV=production cross-env TARGET_BROWSER=firefox webpack --mode=production",
     "build:opera": "cross-env NODE_ENV=production cross-env TARGET_BROWSER=opera webpack --mode=production",
-    "build": "yarn run build:chrome && yarn run build:firefox && yarn run build:opera",
+    "build": "npm run build:chrome && npm run build:firefox && npm run build:opera",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prettier": "prettier src",
     "prettier:write": "npm run prettier -- --write",
-    "release": "run-s build test build-zip release:chrome release:firefox",
-    "release:firefox": "web-ext-submit --source-dir dist",
-    "release:chrome": "webstore upload --source=dist --auto-publish",
+    "release": "run-s lint:fix prettier:fix build test release:chrome release:firefox",
+    "release:firefox": "web-ext-submit --source-dir extension/firefox",
+    "release:chrome": "webstore upload --source=extension/chrome --auto-publish",
     "start": "npm run dev:chrome",
     "test": "jest",
     "test:src": "jest src",
@@ -45,7 +45,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "npm run pre:commit",
-      "pre-push": "npm run pre:push"
+      "pre-push": ""
     }
   },
   "devDependencies": {
