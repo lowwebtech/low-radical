@@ -16,7 +16,7 @@ const manifestInput = {
 
   description: "__MSG_extensionDescription__",
   homepage_url: "https://github.com/lowwebtech/low-radical",
-  short_name: "LowRadical",
+  short_name: "low-radical",
 
   permissions: [
     "tabs",
@@ -47,7 +47,7 @@ const manifestInput = {
       48: "assets/icons/favicon-48.png",
       128: "assets/icons/favicon-128.png",
     },
-    default_title: "LowRadical",
+    default_title: "low—radical",
     "__chrome|opera__chrome_style": false,
     __firefox__browser_style: false,
   },

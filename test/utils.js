@@ -1,6 +1,6 @@
 require('dotenv');
 
-const extensionId = process.env.EXTENSION_ID; // 'aliphkafmeldgkmmjlhgpbleaicgbamj';
+const extensionId = process.env.LOCAL_EXTENSION_ID; // 'aliphkafmeldgkmmjlhgpbleaicgbamj';
 const chromeExtPath = `chrome-extension://${extensionId}/`;
 
 export async function goToOptionPage(page) {

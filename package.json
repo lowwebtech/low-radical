@@ -1,6 +1,6 @@
 {
   "name": "low-radical",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "low—radical",
   "private": true,
   "main": "src/scripts/background.js",
@@ -58,6 +58,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "chrome-webstore-upload-cli": "^1.2.0",
     "clean-webpack-plugin": "^3.0.0",
     "copy-webpack-plugin": "^6.2.1",
     "cross-env": "^7.0.2",
@@ -90,6 +91,7 @@
     "puppeteer": "^5.3.1",
     "resolve-url-loader": "^3.1.1",
     "sass-loader": "^10.0.3",
+    "web-ext-submit": "^5.1.0",
     "webpack": "^5.1.3",
     "webpack-cli": "^4.1.0",
     "webpack-dev-server": "^3.11.0",
