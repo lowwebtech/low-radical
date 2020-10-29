@@ -2,6 +2,9 @@
 
 This extension fights against Amazon. It blocks Amazon websites, hides "Buy" buttons and degrades sites belonging to Amazon or using AWS servers.
 
+Firefox : https://addons.mozilla.org/firefox/addon/no-amazon/
+Chrome : https://chrome.google.com/webstore/detail/low-radical/biaoiacajmgmfnjdgpcclnebfbbfccll
+
 
 ## Why ?
 

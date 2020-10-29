@@ -1,6 +1,6 @@
 import browser from "webextension-polyfill";
 import { formatDotcoms, amazon } from "../data/amazon-urls";
-import { hiddenCSSRules } from "../data/css_rules";
+import { getDegradedCSS } from "../data/css_rules";
 
 let isDegrading = false;
 
@@ -38,8 +38,8 @@ function onTabUpdate(tabId, changeInfo, tab) {
     if (match) {
       for (let i = 0, lg = amazon.length; i < lg; i++) {
         if (tab.url.indexOf(amazon[i]) !== -1) {
-          console.log("degrade", amazon[i]);
-
+          
+          const hiddenCSSRules = getDegradedCSS(amazon[i]);
           const code = `
               * { transition: none !important; animation: none !important; }
               body { filter: grayscale(1); }
@@ -49,6 +49,8 @@ function onTabUpdate(tabId, changeInfo, tab) {
           browser.tabs.insertCSS(tabId, {
             code: code,
           });
+
+          break;
         }
       }
     }

@@ -195,6 +195,10 @@ export const corpDotcoms = [].concat(
     "10000yearclock.net",
     "seattlespheres.com",
 
+    "amazonfutureengineer.com",
+    "amazonfutureengineer.co.uk",
+    "amazonfutureengineer.fr",
+
     // payments
     "amazonpay.in",
     "payments-amazon.com",

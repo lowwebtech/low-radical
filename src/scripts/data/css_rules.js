@@ -15,6 +15,8 @@ export const cssRules = [
       #nav-cart,
       #price,
       #price-block,
+      #submit.add-to-cart,
+      #buyNow_feature_div,
       .masrw-buy-box,
       .nav-signin-tt
     `,
@@ -74,13 +76,6 @@ export const cssRules = [
   },
 ];
 
-export function getDegradedCSS(website) {
-  if (formatedCssRules[website]) {
-    return formatedCssRules[website] + "{ display:none!important; }";
-  } else {
-    return "";
-  }
-}
 
 function parseCSSRules(rules) {
   const dict = {};
@@ -96,5 +91,12 @@ function parseCSSRules(rules) {
   return dict;
 }
 
-export const formatedCssRules = parseCSSRules(cssRules);
-export const hiddenCSSRules = getDegradedCSS();
+const formatedCssRules = parseCSSRules(cssRules);
+
+export function getDegradedCSS(website) {
+  if (formatedCssRules[website]) {
+    return formatedCssRules[website] + "{ display:none!important; }";
+  } else {
+    return "";
+  }
+}
