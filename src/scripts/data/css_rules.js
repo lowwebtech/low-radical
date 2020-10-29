@@ -76,7 +76,6 @@ export const cssRules = [
   },
 ];
 
-
 function parseCSSRules(rules) {
   const dict = {};
   for (let i = 0, lg = cssRules.length; i < lg; i++) {

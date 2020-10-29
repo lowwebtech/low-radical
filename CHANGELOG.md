@@ -1,3 +1,8 @@
+## 0.0.6
+
+- fix issue with injected css styles to hide "Buy" buttons
+- add amazonfutureengineer.com
+
 ## 0.0.5
 
 - remove functionality for changing Jeff Bezos's name -> no content_script.js anymore
