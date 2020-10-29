@@ -1,6 +1,6 @@
 {
   "name": "low-radical",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "low—radical",
   "private": true,
   "main": "src/scripts/background.js",
@@ -18,14 +18,14 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
     "prettier": "prettier src",
-    "prettier:write": "npm run prettier -- --write",
+    "prettier:fix": "npm run prettier -- --write",
     "release": "run-s lint:fix prettier:fix build test release:chrome release:firefox",
     "release:firefox": "web-ext-submit --source-dir extension/firefox",
     "release:chrome": "webstore upload --source=extension/chrome --auto-publish",
     "start": "npm run dev:chrome",
     "test": "jest",
     "test:src": "jest src",
-    "pre:commit": "run-s prettier:write lint:fix",
+    "pre:commit": "run-s prettier:fix lint:fix",
     "pre:push": "run-s test:src"
   },
   "jest": {

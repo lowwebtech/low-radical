@@ -38,7 +38,6 @@ function onTabUpdate(tabId, changeInfo, tab) {
     if (match) {
       for (let i = 0, lg = amazon.length; i < lg; i++) {
         if (tab.url.indexOf(amazon[i]) !== -1) {
-          
           const hiddenCSSRules = getDegradedCSS(amazon[i]);
           const code = `
               * { transition: none !important; animation: none !important; }
