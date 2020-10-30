@@ -1,11 +1,11 @@
 {
   "extensionName": {
-    "message": "low—radical",
+    "message": "low-radical",
     "description": "Name of the extension."
   },
 
   "extensionDescription": {
-    "message": "low—radical is an open source browser extension that shuts down Amazon.",
+    "message": "low-radical is an open source browser extension that shuts down Amazon.",
     "description": "Description of the extension."
   }
 }

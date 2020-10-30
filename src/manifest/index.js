@@ -47,7 +47,7 @@ const manifestInput = {
       48: "assets/icons/favicon-48.png",
       128: "assets/icons/favicon-128.png",
     },
-    default_title: "low—radical",
+    default_title: "low-radical",
     "__chrome|opera__chrome_style": false,
     __firefox__browser_style: false,
   },
