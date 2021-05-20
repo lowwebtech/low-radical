@@ -224,11 +224,3 @@ export const corpCdnDotcoms = [
 ];
 
 export const amazon = amazonDotcoms.concat(corpDotcoms);
-
-export function formatDotcoms(array) {
-  const newArray = [];
-  for (let i = 0, lg = array.length; i < lg; i++) {
-    newArray.push("*://*." + array[i] + "/*");
-  }
-  return newArray;
-}

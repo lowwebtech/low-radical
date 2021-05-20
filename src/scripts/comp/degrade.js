@@ -1,55 +1,67 @@
-import browser from "webextension-polyfill";
-import { formatDotcoms, amazon } from "../data/amazon-urls";
-import { getDegradedCSS } from "../data/css_rules";
+import browser from 'webextension-polyfill'
 
-let isDegrading = false;
+import { formatDotcoms, getDotComs } from '../data/urls'
+import { getDegradedCSS } from '../data/css_rules'
+
+let isDegrading = false
+let all = []
 
 export function degrade() {
   if (!isDegrading) {
-    isDegrading = true;
+    isDegrading = true
 
-    // block unnecessary assets
-    browser.webRequest.onBeforeRequest.addListener(
-      blockAssets,
-      {
-        urls: formatDotcoms(amazon),
-        types: ["font", "media", "object", "sub_frame"],
+    getDotComs().then(
+      (dotcoms) => {
+        all = dotcoms
+
+        // block unnecessary assets
+        browser.webRequest.onBeforeRequest.addListener(
+          blockAssets,
+          {
+            urls: formatDotcoms(dotcoms),
+            types: ['font', 'media', 'object', 'sub_frame'],
+          },
+          ['blocking'],
+        )
+
+        // insert grayscale css
+        browser.tabs.onUpdated.addListener(onTabUpdate)
       },
-      ["blocking"]
-    );
+      (e) => {
+        console.log('error', e)
+      }
+    )
 
-    // insert grayscale css
-    browser.tabs.onUpdated.addListener(onTabUpdate);
   }
 }
 
 export function undegrade() {
   if (isDegrading) {
-    isDegrading = false;
-    browser.webRequest.onBeforeRequest.removeListener(blockAssets);
-    browser.tabs.onUpdated.removeListener(onTabUpdate);
+    isDegrading = false
+    browser.webRequest.onBeforeRequest.removeListener(blockAssets)
+    browser.tabs.onUpdated.removeListener(onTabUpdate)
   }
 }
 
 function onTabUpdate(tabId, changeInfo, tab) {
-  if (changeInfo.status === "loading") {
-    var re = new RegExp("^(http|https)://", "i");
-    var match = re.test(tab.url);
+  if (changeInfo.status === 'loading') {
+    var re = new RegExp('^(http|https)://', 'i')
+    var match = re.test(tab.url)
     if (match) {
-      for (let i = 0, lg = amazon.length; i < lg; i++) {
-        if (tab.url.indexOf(amazon[i]) !== -1) {
-          const hiddenCSSRules = getDegradedCSS(amazon[i]);
+      for (let i = 0, lg = all.length; i < lg; i++) {
+        if (tab.url.indexOf(all[i]) !== -1) {
+          const hiddenCSSRules = getDegradedCSS(all[i])
           const code = `
               * { transition: none !important; animation: none !important; }
               body { filter: grayscale(1); }
               ${hiddenCSSRules}
-              `;
+              `
 
           browser.tabs.insertCSS(tabId, {
             code: code,
-          });
+          })
 
-          break;
+          break
         }
       }
     }
@@ -59,5 +71,5 @@ function onTabUpdate(tabId, changeInfo, tab) {
 function blockAssets(requestDetails) {
   return {
     cancel: true,
-  };
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "low-radical",
-  "version": "0.0.6",
-  "description": "low-radical",
+  "version": "0.0.8",
+  "description": "low—radical",
   "private": true,
   "main": "src/scripts/background.js",
   "repository": "https://github.com/lowwebtech/low-radical.git",

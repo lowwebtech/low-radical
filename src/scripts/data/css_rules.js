@@ -3,7 +3,7 @@ import {
   abeDotcoms,
   audibleDotcoms,
   comixologyDotcoms,
-} from "./amazon-urls";
+} from "./urls/amazon";
 
 export const cssRules = [
   {

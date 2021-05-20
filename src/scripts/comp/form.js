@@ -1,4 +1,5 @@
-import browser from "webextension-polyfill";
+import browser from 'webextension-polyfill'
+import { params } from '../data/params'
 
 const Optional = class {
   constructor(el) {
@@ -51,22 +52,37 @@ const Optional = class {
 function save() {
   const data = {
     blockType: document.querySelector('input[name="blockType"]:checked').value,
-  };
+
+    google: document.querySelector('input[name="google"]').checked,
+    amazon: document.querySelector('input[name="amazon"]').checked,
+    facebook: document.querySelector('input[name="facebook"]').checked,
+    apple: document.querySelector('input[name="apple"]').checked,
+    microsoft: document.querySelector('input[name="microsoft"]').checked,
+  }
 
   for (let i = 0, lg = optionals.length; i < lg; i++) {
     const optional = optionals[i];
     data[optional.id] = optional.getData();
   }
 
-  browser.storage.local.set(data);
+  browser.storage.local.set(data)
 }
 
 function restore() {
-  const getting = browser.storage.local.get(["blockType", "awsDetect"]); // replaceBy
+  const getting = browser.storage.local.get(params) 
+
   getting.then(
     (result) => {
-      const blockType = result.blockType || "blockAll";
-      document.querySelector('input[value="' + blockType + '"]').checked = true;
+      console.log('RESULT', result)
+
+      const blockType = result.blockType || 'blockAll'
+      document.querySelector('input[value="' + blockType + '"]').checked = true
+
+      document.querySelector('input[name="google"]').checked = (result.google === undefined) ? true : result.google;
+      document.querySelector('input[name="amazon"]').checked = (result.amazon === undefined) ? true : result.amazon;
+      document.querySelector('input[name="facebook"]').checked = (result.facebook === undefined) ? true : result.facebook;
+      document.querySelector('input[name="apple"]').checked = (result.apple === undefined) ? true : result.apple;
+      document.querySelector('input[name="microsoft"]').checked = (result.microsoft === undefined) ? true : result.microsoft;
 
       for (let i = 0, lg = optionals.length; i < lg; i++) {
         const optional = optionals[i];
@@ -74,25 +90,25 @@ function restore() {
       }
     },
     (error) => {
-      console.log(`Error: ${error}`);
-    }
-  );
+      console.log(`Error: ${error}`)
+    },
+  )
 }
 
 const optionals = [];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   const optionalEls = document.querySelectorAll(".optional");
   optionalEls.forEach((el) => {
     optionals.push(new Optional(el));
   });
 
-  const inputs = document.querySelectorAll("input");
+  const inputs = document.querySelectorAll('input')
   inputs.forEach((input) => {
-    input.addEventListener("input", (e) => {
-      save();
-    });
-  });
+    input.addEventListener('input', (e) => {
+      save()
+    })
+  })
 
-  restore();
-});
+  restore()
+})

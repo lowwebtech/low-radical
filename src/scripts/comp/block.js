@@ -1,18 +1,24 @@
 import browser from "webextension-polyfill";
-import { formatDotcoms, amazon } from "../data/amazon-urls";
+import { formatDotcoms, parseURL, getDotComs } from "../data/urls";
+
 
 let isBlocking = false;
 export function block() {
   if (!isBlocking) {
     isBlocking = true;
-    browser.webRequest.onBeforeRequest.addListener(
-      blockDotComs,
-      {
-        urls: formatDotcoms(amazon),
-        types: ["main_frame", "sub_frame"],
-      },
-      ["blocking"]
-    );
+
+    getDotComs().then((dotcoms)=>{
+      browser.webRequest.onBeforeRequest.addListener(
+        blockDotComs,
+        {
+          urls: formatDotcoms(dotcoms),
+          types: ["main_frame", "sub_frame"],
+        },
+        ["blocking"]
+      );
+    }, (e)=>{
+      console.log('erroor', e)
+    })
   }
 }
 
@@ -27,6 +33,8 @@ function blockDotComs(requestDetails) {
   const { type, url } = requestDetails;
   const hostname = parseURL(url).hostname.replace("www.", "");
 
+  console.log(requestDetails)
+
   const r = {};
   if (type === "main_frame") {
     r.redirectUrl = browser.runtime.getURL(
@@ -37,30 +45,4 @@ function blockDotComs(requestDetails) {
   }
 
   return r;
-}
-
-function parseURL(url) {
-  var parser = document.createElement("a");
-  var searchObject = {};
-  var queries;
-  var split;
-  var i;
-  // Let the browser do the work
-  parser.href = url;
-  // Convert query string to object
-  queries = parser.search.replace(/^\?/, "").split("&");
-  for (i = 0; i < queries.length; i++) {
-    split = queries[i].split("=");
-    searchObject[split[0]] = split[1];
-  }
-  return {
-    protocol: parser.protocol,
-    host: parser.host,
-    hostname: parser.hostname,
-    port: parser.port,
-    pathname: parser.pathname,
-    search: parser.search,
-    searchObject: searchObject,
-    hash: parser.hash,
-  };
 }
