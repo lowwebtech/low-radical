@@ -26,7 +26,8 @@ const getExtensionFileType = () => {
 
 module.exports = {
     mode: 'development',
-
+    devtool: 'cheap-module-source-map',
+    
     entry: {
         background: './src/scripts/background.js',
         // contentScript: './src/scripts/contentScript.js',
