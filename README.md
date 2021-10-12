@@ -35,6 +35,17 @@ The extension also attempts to limit the use of AWS servers:
 - block unnecessary files from Amazon CDNs
 
 
+## Build
+
+- `git clone git@github.com:lowwebtech/low-radical.git`
+- `npm install`
+- watch task:  `npm run dev` (all) / `npm run dev:chrome` / `npm run dev:firefox` / `npm run dev:opera`
+- build task: `npm run build` (all) / `npm run build:chrome` / `npm run build:firefox` / `npm run build:opera`
+
+
+
+
+
 
 ## Licence
 
