@@ -1,6 +1,6 @@
 {
   "name": "low-radical",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "description": "low—radical",
   "private": true,
   "main": "src/scripts/background.js",

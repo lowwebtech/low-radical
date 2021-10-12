@@ -1,3 +1,9 @@
+## 0.1.0
+
+- block GAFAM website
+- remove manifest content_security_policy
+- fix firefox "eval" error during development
+
 ## 0.0.8
 
 - simplify background init
