@@ -41,7 +41,7 @@ class ScreenShoter {
                 try {
                     expect(numDiffPixels).toEqual(0);
                 } catch (error) {
-                    console.error('SCREENSHOT CHANGED', fileName)
+                    console.error('SCREENSHOT CHANGED', fileName, numDiffPixels, expect(numDiffPixels))
                 }
         
                 resolve();
