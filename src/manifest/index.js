@@ -25,7 +25,7 @@ const manifestInput = {
     /* 'webNavigation', */ "webRequestBlocking",
     "<all_urls>",
   ],
-  content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  // content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
 
   "__chrome|firefox__author": "lowwebtech",
   __opera__developer: {
