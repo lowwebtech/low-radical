@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const wextManifest = require('wext-manifest');
-const ZipPlugin = require('zip-webpack-plugin');
+// const ZipPlugin = require('zip-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -14,15 +14,15 @@ const manifestInput = require('./src/manifest');
 const targetBrowser = process.env.TARGET_BROWSER;
 const manifest = wextManifest[targetBrowser](manifestInput);
 
-const getExtensionFileType = () => {
-    if (targetBrowser === 'opera') {
-        return 'crx';
-    }
-    if (targetBrowser === 'firefox') {
-        return 'xpi';
-    }
-    return 'zip';
-};
+// const getExtensionFileType = () => {
+//     if (targetBrowser === 'opera') {
+//         return 'crx';
+//     }
+//     if (targetBrowser === 'firefox') {
+//         return 'xpi';
+//     }
+//     return 'zip';
+// };
 
 module.exports = {
     mode: 'development',
@@ -48,7 +48,7 @@ module.exports = {
         new CleanWebpackPlugin({
             cleanOnceBeforeBuildPatterns: [
                 path.join(process.cwd(), `extension/${targetBrowser}`),
-                path.join(process.cwd(), `extension/${targetBrowser}.${getExtensionFileType()}`),
+                // path.join(process.cwd(), `extension/${targetBrowser}.${getExtensionFileType()}`),
             ],
             cleanStaleWebpackAssets: false,
             verbose: true,
@@ -126,11 +126,11 @@ module.exports = {
                 // cache: true,
                 parallel: true,
             }),
-            new ZipPlugin({
-                path: path.resolve(__dirname, 'extension'),
-                extension: `${getExtensionFileType()}`,
-                filename: `${targetBrowser}`,
-            }),
+            // new ZipPlugin({
+            //     path: path.resolve(__dirname, 'extension'),
+            //     extension: `${getExtensionFileType()}`,
+            //     filename: `${targetBrowser}`,
+            // }),
         ],
     },
 
