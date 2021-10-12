@@ -1,24 +1,26 @@
 import browser from "webextension-polyfill";
 import { formatDotcoms, parseURL, getDotComs } from "../data/urls";
 
-
 let isBlocking = false;
 export function block() {
   if (!isBlocking) {
     isBlocking = true;
 
-    getDotComs().then((dotcoms)=>{
-      browser.webRequest.onBeforeRequest.addListener(
-        blockDotComs,
-        {
-          urls: formatDotcoms(dotcoms),
-          types: ["main_frame", "sub_frame"],
-        },
-        ["blocking"]
-      );
-    }, (e)=>{
-      console.log('erroor', e)
-    })
+    getDotComs().then(
+      (dotcoms) => {
+        browser.webRequest.onBeforeRequest.addListener(
+          blockDotComs,
+          {
+            urls: formatDotcoms(dotcoms),
+            types: ["main_frame", "sub_frame"],
+          },
+          ["blocking"]
+        );
+      },
+      (e) => {
+        console.log("erroor", e);
+      }
+    );
   }
 }
 
@@ -33,7 +35,7 @@ function blockDotComs(requestDetails) {
   const { type, url } = requestDetails;
   const hostname = parseURL(url).hostname.replace("www.", "");
 
-  console.log(requestDetails)
+  console.log(requestDetails);
 
   const r = {};
   if (type === "main_frame") {
