@@ -38,7 +38,11 @@ class ScreenShoter {
 
                 if(numDiffPixels !== 0) fs.writeFileSync(`${screenDir}/diff/${fileName}.png`, PNG.sync.write(diff));
     
-                expect(numDiffPixels).toEqual(0);
+                try {
+                    expect(numDiffPixels).toEqual(0);
+                } catch (error) {
+                    console.error('SCREENSHOT CHANGED', fileName)
+                }
         
                 resolve();
             }

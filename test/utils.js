@@ -15,6 +15,8 @@ export async function goToWeb(url, page) {
   await goTo(url, page);
 }
 export async function goTo(to, page) {
-  await page.goto(to, { waitUntil: 'domcontentloaded' });
-  await page.reload();
+  if(page && to){
+    await page.goto(to, { waitUntil: 'domcontentloaded' });
+    await page.reload();
+  }
 }
