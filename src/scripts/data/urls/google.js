@@ -1,4 +1,6 @@
-export const googleDotcoms = ["google.com", "g.co"];
+import { getTLDs } from "../tlds";
+
+export const googleDotcoms = getTLDs('google');
 
 export const youtubeDotcoms = ["youtube.com", "youtu.be"];
 
@@ -17,7 +19,9 @@ export const alphabetDotcoms = [
 
 export const corpDotcoms = [].concat(youtubeDotcoms, alphabetDotcoms, [
   "gmail.com",
+  "g.co",
 
+  "googleblog.com",
   "google-analytics.com",
   "googleapis.com",
   "admob.com",

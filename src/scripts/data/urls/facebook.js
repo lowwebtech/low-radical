@@ -1,8 +1,12 @@
-export const facebookDotcoms = ["facebook.com", "fb.com"];
+import { getTLDs } from "../tlds";
+
+export const facebookDotcoms = getTLDs('facebook');
+
 export const instagramDotcoms = ["instagram.com"];
 export const whatsappDotcoms = ["whatsapp.com"];
 
 export const corpDotcoms = [].concat(instagramDotcoms, whatsappDotcoms, [
+  "fb.com",
   "oculus.com",
   "messenger.com",
   "crowdtangle.com",

@@ -1,4 +1,6 @@
-export const microsoftDotcoms = ["microsoft.com"];
+import { getTLDs } from "../tlds";
+
+export const microsoftDotcoms = getTLDs('microsoft');
 
 export const corpDotcoms = [].concat([
   "bing.com",
@@ -10,6 +12,7 @@ export const corpDotcoms = [].concat([
   "skype.com",
   "msn.com",
   "minecraft.com",
+  "hotmail.com",
   "yammer.com",
   "microsoftonline.com",
 ]);

@@ -1,3 +1,10 @@
+## 0.1.2
+- update README
+- 
+
+## 0.1.1
+- fix extension build : comment zip
+
 ## 0.1.0
 
 - block GAFAM website

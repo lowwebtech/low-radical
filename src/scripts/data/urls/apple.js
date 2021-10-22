@@ -1,4 +1,5 @@
-export const appleDotcoms = ["apple.com"];
+import { getTLDs } from "../tlds";
+export const appleDotcoms = getTLDs('apple');
 
 export const corpDotcoms = [].concat([
   "shazam.com",
