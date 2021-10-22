@@ -1,6 +1,7 @@
 ## 0.1.2
 - update README
-- 
+- blocks GAFAM by country TLDs (eg: google.fr|de|co.jp|...)
+- blocks websites from GAFAM tld (eg: *.google)
 
 ## 0.1.1
 - fix extension build : comment zip

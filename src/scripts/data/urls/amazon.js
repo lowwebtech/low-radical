@@ -1,6 +1,6 @@
 import { getTLDs } from "../tlds";
 
-export const amazonDotcoms = getTLDs('amazon');
+export const amazonDotcoms = getTLDs("amazon");
 
 export const audibleDotcoms = [
   "audible.com",

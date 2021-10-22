@@ -1,6 +1,6 @@
 import { getTLDs } from "../tlds";
 
-export const googleDotcoms = getTLDs('google');
+export const googleDotcoms = getTLDs("google");
 
 export const youtubeDotcoms = ["youtube.com", "youtu.be"];
 

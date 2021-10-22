@@ -1,6 +1,6 @@
 import { getTLDs } from "../tlds";
 
-export const facebookDotcoms = getTLDs('facebook');
+export const facebookDotcoms = getTLDs("facebook");
 
 export const instagramDotcoms = ["instagram.com"];
 export const whatsappDotcoms = ["whatsapp.com"];

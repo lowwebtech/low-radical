@@ -52,6 +52,12 @@ const manifestInput = {
     __firefox__browser_style: false,
   },
 
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "754FB1AD-CC3B-4856-B6A0-7786F8CA9D17",
+    }
+  },
+
   "__chrome|opera__options_page": "options.html",
 
   options_ui: {

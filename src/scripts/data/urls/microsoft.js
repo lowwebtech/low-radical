@@ -1,6 +1,6 @@
 import { getTLDs } from "../tlds";
 
-export const microsoftDotcoms = getTLDs('microsoft');
+export const microsoftDotcoms = getTLDs("microsoft");
 
 export const corpDotcoms = [].concat([
   "bing.com",
