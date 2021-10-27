@@ -6,7 +6,7 @@ Firefox : https://addons.mozilla.org/firefox/addon/no-amazon/
 Chrome : https://chrome.google.com/webstore/detail/low-radical/biaoiacajmgmfnjdgpcclnebfbbfccll
 
 
-## Build
+## Build / install
 
 - `git clone git@github.com:lowwebtech/low-radical.git`
 - `npm install`

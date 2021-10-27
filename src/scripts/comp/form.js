@@ -51,8 +51,6 @@ const Optional = class {
 
 function save() {
   const data = {
-    blockType: document.querySelector('input[name="blockType"]:checked').value,
-
     google: document.querySelector('input[name="google"]').checked,
     amazon: document.querySelector('input[name="amazon"]').checked,
     facebook: document.querySelector('input[name="facebook"]').checked,
@@ -75,8 +73,8 @@ function restore() {
     (result) => {
       console.log("RESULT", result);
 
-      const blockType = result.blockType || "blockAll";
-      document.querySelector('input[value="' + blockType + '"]').checked = true;
+      // const blockType = result.blockType || "blockAll";
+      // document.querySelector('input[value="' + blockType + '"]').checked = true;
 
       document.querySelector('input[name="google"]').checked =
         result.google === undefined ? true : result.google;

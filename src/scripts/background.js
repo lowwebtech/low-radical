@@ -19,7 +19,7 @@ function start(details) {
 
 function update() {
   getParams((params) => {
-    const type = params.blockType;
+    const type = "blockAll"//params.blockType;
     const awsDetect = params.awsDetect;
 
     updateBlockingType(type);
@@ -57,7 +57,7 @@ browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
           value: "AWS",
         },
         google: false,
-        amazon: false,
+        amazon: true,
         facebook: false,
         apple: false,
         microsoft: false,

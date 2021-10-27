@@ -1,41 +1,133 @@
-@import "base/fonts";
-@import "base/reset";
-@import "base/variables";
+@import 'mixins';
+
+@import 'base/fonts';
+@import 'base/reset';
+@import 'base/variables';
+
+:root{
+  --primary-color: #F99;
+  --dark-color: #1F1F1F;
+  --border-color: #473535;
+  --inactive-color: #999;
+  --padding: 1rem 1.3rem;
+}
 
 body {
-  color: black;
-  background-color: white;
-  min-width: 370px;
-  padding: 10px;
-  font-family: "Arial", sans-serif;
+  font-family: 'Arial', sans-serif;
+  font-size: 100%;
+  background-color: var(--dark-color);
 }
 
-form {
-}
-label {
-  display: block;
+img, svg {
+  vertical-align: middle;
 }
 
-hr {
-  border-top: 1px dotted black;
-  margin: 6px 0;
+.color {
+  color: var(--primary-color);
+}
+.white {
+  color: white;
+}
+.bg-color {
+  background-color: var(--primary-color);
+}
+.fs-9 {
+  font-size: rem(9);
+}
+.fs-13 {
+  font-size: rem(13);
+}
+.uppercase {
+  text-transform: uppercase;
 }
 
-input[type="text"] {
-  border: 1px solid black;
+.container {
+  color: white;
+  max-width: 420px;
+  min-width: 320px;
 }
 
-b {
-  font-size: 1.5em;
-}
-
-.optional {
-  &__value {
-    display: none;
+.header {
+  display: flex;
+  padding: var(--padding);
+  h1 {
+    margin-bottom: 2px;
   }
-  &--active {
-    .optional__value {
-      display: block;
+  a {
+    margin-left: auto;
+  }
+}
+
+.logo {
+  margin-right: 1rem;
+  margin-top: 2px;
+}
+
+.list {
+  li {
+    padding: 1.6rem 1.3rem;
+    border-bottom: 1px solid var(--border-color);
+    span {
+      margin-left: .6rem;
+    }
+    svg {
+      margin-top: -2px;
+    }
+  }
+}
+
+.link {
+  display: inline-block;
+  color: var(--primary-color);
+  font-size: rem(13);
+  padding: var(--padding);
+  display: flex;
+  letter-spacing: 0.02em;
+  img, svg {
+    margin-left: auto;
+    margin-top: 2px;
+  }
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padding);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border-color);
+  &:first-child {
+    border-top: 1px solid var(--border-color);
+  }
+}
+
+.checkbox {
+  position: relative;
+  appearance: none;
+  width: 44px;
+  height: 24px;
+  background-color: var(--inactive-color);
+  border-radius: 24px;
+  transition-duration: 0.2s;
+  vertical-align: middle;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 100%;
+    will-change: transform;
+    transition-duration: 0.2s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+  }
+
+  &:checked {
+    background-color: var(--primary-color);
+    &:after {
+      transform: translateX(20px);
     }
   }
 }

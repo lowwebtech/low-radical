@@ -1,0 +1,77 @@
+@use 'sass:math';
+
+$breakpoints: (
+  'xs': 350px,
+  'small': 768px,
+);
+
+$breakpointsH: (
+  'small': 560px,
+);
+
+@mixin motion() {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+@mixin below($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (max-width: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin above($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (min-width: $value+1) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin belowH($breakpoint) {
+  $value: map-get($breakpointsH, $breakpoint);
+  @if $value != null {
+    @media (max-height: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpointsH` map.";
+  }
+}
+
+@mixin aboveH($breakpoint) {
+  $value: map-get($breakpointsH, $breakpoint);
+  @if $value != null {
+    @media (min-height: $value) {
+      @content;
+    }
+  } @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Please make sure it is defined in `$breakpointsH` map.";
+  }
+}
+
+$browser-context: 16; // Default
+@function em($pixels, $context: $browser-context) {
+  @return ($pixels / $context) + em;
+}
+@function rem($pixels, $context: $browser-context) {
+  @return ($pixels / $context) + rem;
+}
+
+@function percent($width) {
+  $size: 100 * $width / 1200 * 1%;
+  @return $size;
+}
