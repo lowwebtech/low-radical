@@ -3,49 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Popup</title>
+    <title>Low-radical options</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
-  <body>
-    <form>
-      <!-- <label>
-        <input type="radio" name="blockType" value="blockAll" />
-        HARD: block all websites
-      </label>
+  <body class="options-page">
+    <div class="container">
+      <%= require('html-loader!./partials/_header.html').default %>
+      
+      <main>
 
-      <label>
-        <input type="radio" name="blockType" value="degradeAll" />
-        SOFT: downgrade websites
-      </label>
+        <div class="content">
+          <p>
+            Low—radical is an open source web extension and a tool of Digital Guerilla against ecocidal GAFAM corporations.<br>
+            You can block, partially block or whitelist many domains and subdomains from Amazon, Apple, Facebook, Google and Microsoft so they can disappear from your browsing experience.
+          </p>
+  
+          <ul>
+            <li><a href="https://github.com/lowwebtech/low-radical" target="_blank">Learn more</a></li>
+            <li><a href="" target="_blank">Share feedback</a></li>
+            <li><a href="https://github.com/lowwebtech/low-radical/issues" target="_blank">Report issue</a></li>
+          </ul>
+        </div>
 
-      <hr /> -->
+        <%= require('html-loader!./partials/_form.html').default %>
 
-      <label>
-        <input type="checkbox" name="google" value="google" /> Google
-      </label>
-      <label>
-        <input type="checkbox" name="amazon" value="amazon" /> Amazon
-      </label>
-      <label>
-        <input type="checkbox" name="facebook" value="facebook" /> Facebook
-      </label>
-      <label>
-        <input type="checkbox" name="apple" value="apple" /> Apple
-      </label>
-      <label>
-        <input type="checkbox" name="microsoft" value="microsoft" /> Microsoft
-      </label>
+      </main>
 
-      <hr />
-
-      <div class="optional" id="awsDetect">
-        <label>
-          Display icon text for website using AWS:
-          <input type="checkbox" name="awsDetect" class="optional__cb" />
-        </label>
-        <input type="text" name="awsDetectValue" class="optional__value" />
-      </div>
-    </form>
+      <footer class="footer content">
+        <p>
+          Low—radical is an initiative of low—web x Kuroneko.<br>
+          Visit our websites to know more and help.
+        </p>
+        <ul>
+          <li><a href="https://lowweb.tech/" target="_blank">low—web</a></li>
+          <li><a href="https://kuroneko.io/" target="_blank">Kuroneko</a></li>
+        </ul>
+      </footer>
+    </div>
   </body>
 </html>

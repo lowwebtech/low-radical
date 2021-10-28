@@ -10,8 +10,20 @@ Chrome : https://chrome.google.com/webstore/detail/low-radical/biaoiacajmgmfnjdg
 
 - `git clone git@github.com:lowwebtech/low-radical.git`
 - `npm install`
-- watch task:  `npm run dev` (all) / `npm run dev:chrome` / `npm run dev:firefox` / `npm run dev:opera`
-- build task: `npm run build` (all) / `npm run build:chrome` / `npm run build:firefox` / `npm run build:opera`
+- watch task:  
+```
+npm run dev (default to firefox)
+npm run dev:chrome
+npm run dev:firefox
+npm run dev:opera
+```
+- build task: 
+```
+npm run build (all browsers)
+npm run build:chrome
+npm run build:firefox
+npm run build:opera
+```
 
 
 ## TODO

@@ -1,25 +1,41 @@
-@import 'mixins';
-
-@import 'base/fonts';
+@import 'base/mixins';
 @import 'base/reset';
-@import 'base/variables';
 
-:root{
-  --primary-color: #F99;
-  --dark-color: #1F1F1F;
+:root {
+  --primary-color: #f99;
+  --dark-color: #1f1f1f;
   --border-color: #473535;
   --inactive-color: #999;
   --padding: 1rem 1.3rem;
+  --font-big: 0.9375rem;
+  @include above(small) {
+    --font-big: 1.25rem;
+    --padding: 1.2rem 0;
+  }
 }
 
 body {
   font-family: 'Arial', sans-serif;
   font-size: 100%;
   background-color: var(--dark-color);
+  line-height: 1.5;
 }
 
-img, svg {
+.options-page {
+  font-size: rem(14);
+  padding-bottom: 2rem;
+}
+.popup-page {
+  font-size: rem(13);
+}
+
+img,
+svg {
   vertical-align: middle;
+}
+
+a {
+  color: var(--primary-color);
 }
 
 .color {
@@ -28,34 +44,59 @@ img, svg {
 .white {
   color: white;
 }
-.bg-color {
-  background-color: var(--primary-color);
-}
-.fs-9 {
-  font-size: rem(9);
-}
-.fs-13 {
-  font-size: rem(13);
-}
 .uppercase {
   text-transform: uppercase;
 }
 
+.content {
+  line-height: 1.75;
+  margin-bottom: 1.6rem;
+  padding: 0 1.3rem;
+  @include above(small){
+    padding: 0;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    li {
+      margin: 0.4rem 0;
+    }
+  }
+}
+
 .container {
   color: white;
-  max-width: 420px;
+  max-width: 500px;
   min-width: 320px;
+  @include above(small) {
+    padding: 0 2rem;
+  }
 }
 
 .header {
   display: flex;
+  line-height: 1.125;
   padding: var(--padding);
+  @include above(small) {
+    padding: 2rem 0;
+  }
   h1 {
     margin-bottom: 2px;
+    font-size: rem(13);
+  }
+  h2 {
+    font-size: rem(9);
   }
   a {
     margin-left: auto;
   }
+}
+
+.footer {
+  padding-top: 2rem;
 }
 
 .logo {
@@ -67,8 +108,11 @@ img, svg {
   li {
     padding: 1.6rem 1.3rem;
     border-bottom: 1px solid var(--border-color);
+    @include above(small) {
+      padding: 2rem 0;
+    }
     span {
-      margin-left: .6rem;
+      margin-left: 0.6rem;
     }
     svg {
       margin-top: -2px;
@@ -79,11 +123,11 @@ img, svg {
 .link {
   display: inline-block;
   color: var(--primary-color);
-  font-size: rem(13);
   padding: var(--padding);
   display: flex;
   letter-spacing: 0.02em;
-  img, svg {
+  img,
+  svg {
     margin-left: auto;
     margin-top: 2px;
   }
@@ -93,8 +137,8 @@ img, svg {
   display: flex;
   justify-content: space-between;
   padding: var(--padding);
-  line-height: 1.5;
   border-bottom: 1px solid var(--border-color);
+  font-size: var(--font-big);
   &:first-child {
     border-top: 1px solid var(--border-color);
   }
