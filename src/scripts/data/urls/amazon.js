@@ -154,3 +154,16 @@ export const corpCdnDotcoms = [
 ];
 
 export const amazon = amazonDotcoms.concat(corpDotcoms);
+
+
+/**
+ * Amazon
+ * Twitch
+ * Audible
+ * Bookstores (Adebook, Comixology...)
+ * IMDB
+ * Washington Post
+ * AWS
+ * Wholefood's Market
+ * Others
+ */

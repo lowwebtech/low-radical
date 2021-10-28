@@ -15,3 +15,10 @@ export const corpDotcoms = [].concat(instagramDotcoms, whatsappDotcoms, [
 export const corpCdnDotcoms = ["fbcdn.net", "cdninstagram.com", "whatsapp.net"];
 
 export const facebook = facebookDotcoms.concat(corpDotcoms);
+
+/*
+Facebook
+Instagram
+Whatsapp
+Messenger
+*/

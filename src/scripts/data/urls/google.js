@@ -19,7 +19,6 @@ export const alphabetDotcoms = [
 
 export const corpDotcoms = [].concat(youtubeDotcoms, alphabetDotcoms, [
   "gmail.com",
-  "g.co",
 
   "googleblog.com",
   "google-analytics.com",
@@ -36,3 +35,17 @@ export const corpDotcoms = [].concat(youtubeDotcoms, alphabetDotcoms, [
 export const corpCdnDotcoms = ["googleusercontent.com", "gstatic.com"];
 
 export const google = googleDotcoms.concat(corpDotcoms);
+
+/**
+ * Google
+ * Youtube
+ * Gmail
+ * Maps
+ * Docs (Sheets, Slides, Forms, Docs)
+ * Blogger
+ * Android
+ * Translate
+ * Calendar
+ * Drive
+ * or whitelist
+ */

@@ -12,3 +12,10 @@ export const corpDotcoms = [].concat([
 export const corpCdnDotcoms = [];
 
 export const apple = appleDotcoms.concat(corpDotcoms);
+
+/**
+ * Apple
+ * 
+ * Shazam
+ * Beats by Dre
+ */
