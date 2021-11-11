@@ -1,7 +1,6 @@
 import browser from 'webextension-polyfill'
 
 export const params = [
-  'blockType',
   'whitelist',
 
   'google',
@@ -16,8 +15,8 @@ export const params = [
 
 export function setDefaultParams() {
   return setParams({
-    blockType: 'blockAll',
     whitelist: [],
+    
     google: false,
     amazon: true,
     facebook: false,

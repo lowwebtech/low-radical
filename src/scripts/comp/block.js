@@ -8,6 +8,8 @@ export function block() {
 
     getDotComs().then(
       (dotcoms) => {
+        console.log('DOTCOMS', dotcoms)
+
         browser.webRequest.onBeforeRequest.addListener(
           blockDotComs,
           {
@@ -18,7 +20,7 @@ export function block() {
         );
       },
       (e) => {
-        console.log("erroor", e);
+        console.log("error", e);
       }
     );
   }
@@ -33,14 +35,14 @@ export function unblock() {
 
 function blockDotComs(requestDetails) {
   const { type, url } = requestDetails;
-  const hostname = parseURL(url).hostname.replace("www.", "");
-
-  console.log(requestDetails);
+  // // const hostname = parseURL(url).hostnam
+  console.log('block', url)
+  // console.log(requestDetails);
 
   const r = {};
   if (type === "main_frame") {
     r.redirectUrl = browser.runtime.getURL(
-      "assets/fallback.html?from=" + hostname
+      "assets/fallback.html?from=" + encodeURIComponent(url)
     );
   } else {
     r.cancel = true;

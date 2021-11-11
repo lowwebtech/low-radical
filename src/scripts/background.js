@@ -1,21 +1,20 @@
 import browser from 'webextension-polyfill'
 
 import { block, unblock } from './comp/block'
-import { getParams, setDefaultParams } from './data/params'
+import { setDefaultParams } from './data/params'
 import RequestManager from './managers/RequestManager'
 
 RequestManager.init()
 
 function start() {
-  update()
+  block()
+
   browser.storage.onChanged.addListener(update)
 }
 
 function update() {
-  getParams().then((params) => {
-    unblock()
-    block()
-  }, console.error)
+  unblock()
+  block()
 }
 
 browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
@@ -28,6 +27,4 @@ browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
   }
 })
 
-setTimeout(() => {
-  start()
-}, 300)
+start()

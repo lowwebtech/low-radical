@@ -123,11 +123,11 @@ export const amazon = [
   },
   {
     name: 'IMDb',
-    domain: ['imdb.com', 'boxofficemojo.com'],
+    domains: ['imdb.com', 'boxofficemojo.com'],
   },
   {
     name: 'Megalomania',
-    domain: [
+    domains: [
       'blueorigin.com',
       'bezosexpeditions.com',
       'bezosdayonefund.org',
@@ -145,7 +145,7 @@ export const amazon = [
   },
   {
     name: 'Others',
-    domain: [
+    domains: [
       // tools
       'mturk.com',
       'eero.com',

@@ -70,7 +70,7 @@ a {
 .container {
   color: white;
   max-width: 500px;
-  min-width: 320px;
+  min-width: 300px;
   @include above(small) {
     padding: 0 2rem;
   }
@@ -173,5 +173,22 @@ a {
     &:after {
       transform: translateX(20px);
     }
+  }
+}
+
+.button {
+  cursor: pointer;
+  text-transform: uppercase;
+  background: transparent;
+  color: white;
+  font-size: rem(10);
+  line-height: 1.5rem;
+  height: 1.5rem;
+  letter-spacing: 0.15em;
+  border: 1px solid var(--border-color);
+  border-radius: 2px;
+  padding: 0 1rem;
+  &:hover {
+    background-color: var(--primary-color);
   }
 }

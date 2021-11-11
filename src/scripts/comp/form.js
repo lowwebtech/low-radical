@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import { params } from "../data/params";
+import { params, setParams } from "../data/params";
 
 const Optional = class {
   constructor(el) {
@@ -63,7 +63,7 @@ function save() {
     data[optional.id] = optional.getData();
   }
 
-  browser.storage.local.set(data);
+  setParams(data)
 }
 
 function restore() {
@@ -72,9 +72,6 @@ function restore() {
   getting.then(
     (result) => {
       console.log("RESULT", result);
-
-      // const blockType = result.blockType || "blockAll";
-      // document.querySelector('input[value="' + blockType + '"]').checked = true;
 
       document.querySelector('input[name="google"]').checked =
         result.google === undefined ? true : result.google;
