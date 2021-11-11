@@ -1,40 +1,71 @@
-import { getTLDs } from "../tlds";
+import { getTLDs } from '../tlds'
 
-export const googleDotcoms = getTLDs("google");
+export const google = [
+  {
+    name: 'Google',
+    domains: [...getTLDs('google')],
+  },
+  {
+    name: 'Youtube',
+    domains: ['youtube.com', 'youtu.be'],
+  },
+  {
+    name: 'Gmail',
+    domains: ['gmail.com', 'mail.google.com'],
+  },
+  {
+    name: 'Docs',
+    domains: ['docs.google.com'],
+  },
+  {
+    name: 'Maps',
+    domains: ['maps.google.com'],
+  },
+  {
+    name: 'Blogger',
+    domains: ['blogger.com', 'googleblog.com'],
+  },
+  {
+    name: 'Android',
+    domains: ['android.com'],
+  },
+  {
+    name: 'Alphabet',
+    domains: [
+      'wing.com',
+      'waymo.com',
+      'x.company',
+      'verily.com',
+      'sidewalklabs.com',
+      'gv.com',
+      'fitbit.com',
+      'deepmind.com',
+      'calicolabs.com',
+      'capitalg.com',
+    ],
+  },
+  {
+    name: 'Others',
+    domains: [
+      'google-analytics.com',
+      'googleapis.com',
+      'admob.com',
+      'feedburner.com',
+      'firebase.com',
+      'tensorflow.org',
+      'waze.com',
 
-export const youtubeDotcoms = ["youtube.com", "youtu.be"];
+      'google-analytics.com',
+      'googleadservices.com',
+      'googleanalytics.com',
+      'googlesyndication.com',
+      'googletagmanager.com',
+      'googletagservices.com',
+    ],
+  },
+]
 
-export const alphabetDotcoms = [
-  "wing.com",
-  "waymo.com",
-  "x.company",
-  "verily.com",
-  "sidewalklabs.com",
-  "gv.com",
-  "fitbit.com",
-  "deepmind.com",
-  "calicolabs.com",
-  "capitalg.com",
-];
-
-export const corpDotcoms = [].concat(youtubeDotcoms, alphabetDotcoms, [
-  "gmail.com",
-
-  "googleblog.com",
-  "google-analytics.com",
-  "googleapis.com",
-  "admob.com",
-  "blogger.com",
-  "feedburner.com",
-  "firebase.com",
-  "tensorflow.org",
-  "android.com",
-  "waze.com",
-]);
-
-export const corpCdnDotcoms = ["googleusercontent.com", "gstatic.com"];
-
-export const google = googleDotcoms.concat(corpDotcoms);
+export const corpCdnDotcoms = ['googleusercontent.com', 'gstatic.com']
 
 /**
  * Google
@@ -48,4 +79,15 @@ export const google = googleDotcoms.concat(corpDotcoms);
  * Calendar
  * Drive
  * or whitelist
+ */
+
+/**
+ * TODO block tracker and all files from
+ * 
+  "google-analytics.com",
+  "googleadservices.com",
+  "googleanalytics.com",
+  "googlesyndication.com",
+  "googletagmanager.com",
+  "googletagservices.com",
  */

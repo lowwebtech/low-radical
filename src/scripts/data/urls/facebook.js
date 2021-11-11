@@ -1,24 +1,46 @@
-import { getTLDs } from "../tlds";
-
-export const facebookDotcoms = getTLDs("facebook");
-
-export const instagramDotcoms = ["instagram.com"];
-export const whatsappDotcoms = ["whatsapp.com"];
-
-export const corpDotcoms = [].concat(instagramDotcoms, whatsappDotcoms, [
-  "fb.com",
-  "oculus.com",
-  "messenger.com",
-  "crowdtangle.com",
-]);
+export const facebook = [
+  {
+    name: 'Facebook',
+    domains: [
+      'fb.com',
+      'facebook.com',
+      'meta.com'
+    ]
+  },
+  {
+    name: 'Instagram',
+    domains: [
+      'instagram.com'
+    ]
+  },
+  {
+    name: 'Whatsapp',
+    domains: [
+      'whatsapp.com'
+    ]
+  },
+  {
+    name: 'Messenger',
+    domains: [
+      'messenger.com'
+    ]
+  },
+  {
+    name: 'Others',
+    domains: [
+      "oculus.com",
+      "crowdtangle.com",
+    ]
+  }
+]
 
 export const corpCdnDotcoms = ["fbcdn.net", "cdninstagram.com", "whatsapp.net"];
-
-export const facebook = facebookDotcoms.concat(corpDotcoms);
 
 /*
 Facebook
 Instagram
 Whatsapp
 Messenger
+
+Others
 */

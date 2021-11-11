@@ -1,160 +1,180 @@
-import { getTLDs } from "../tlds";
+import { getTLDs } from '../tlds'
 
-export const amazonDotcoms = getTLDs("amazon");
+export const amazon = [
+  {
+    name: 'Amazon',
+    domains: [
+      ...getTLDs('amazon'),
 
-export const audibleDotcoms = [
-  "audible.com",
-  "audible.ca",
-  "audible.co.uk",
-  "audible.de",
-  "audible.fr",
-  "audible.it",
-  "audible.com.au",
-  "audible.in",
-  "audible.co.jp",
-];
-export const abeDotcoms = [
-  "abebooks.com",
-  "abebooks.co.uk",
-  "abebooks.de",
-  "abebooks.fr",
-  "abebooks.it",
-  "iberlibro.com",
-  "zvab.com",
-];
-export const comixologyDotcoms = [
-  "comixology.com",
-  "comixology.eu",
-  "comixology.fr",
-  "comixology.co.uk",
-];
-export const aboutamazonDotcoms = [
-  "aboutamazon.eu",
-  "aboutamazon.com",
-  "aboutamazon.co.uk",
-  "aboutamazon.it",
-  "aboutamazon.com",
-  "aboutamazon.fr",
-  "aboutamazon.in",
-  "aboutamazon.de",
-];
+      'amazon.work',
+      'amazon.science',
+      'amazon.care',
+      'amazon.jobs',
 
-export const corpDotcoms = [].concat(
-  audibleDotcoms,
-  abeDotcoms,
-  comixologyDotcoms,
-  aboutamazonDotcoms,
-  [
-    "amazon.work",
-    "amazon.science",
-    "amazon.care",
-    "amazon.jobs",
+      'amzn.to',
 
-    "amazonvideo.com",
-    "primevideo.com",
+      'aboutamazon.eu',
+      'aboutamazon.com',
+      'aboutamazon.co.uk',
+      'aboutamazon.it',
+      'aboutamazon.com',
+      'aboutamazon.fr',
+      'aboutamazon.in',
+      'aboutamazon.de',
 
-    // https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js
+      // https://static-na.payments-amazon.com/OffAmazonPayments/us/sandbox/js/Widgets.js
 
-    "amazon-adsystem.com",
-    "amazon-cornerstone.com",
-    "amazontrust.com",
+      'amazon-adsystem.com',
+      'amazon-cornerstone.com',
+      'amazontrust.com',
 
-    "assoc-amazon.fr",
-    "assoc-amazon.net",
-    "assoc-amazon.ca",
-    "assoc-amazon.co.uk",
-    "assoc-amazon.com",
-    "assoc-amazon.com.au",
-    "assoc-amazon.cn",
-    "assoc-amazon.de",
-    "assoc-amazon.es",
-    "assoc-amazon.fr",
-    "assoc-amazon.it",
+      'assoc-amazon.fr',
+      'assoc-amazon.net',
+      'assoc-amazon.ca',
+      'assoc-amazon.co.uk',
+      'assoc-amazon.com',
+      'assoc-amazon.com.au',
+      'assoc-amazon.cn',
+      'assoc-amazon.de',
+      'assoc-amazon.es',
+      'assoc-amazon.fr',
+      'assoc-amazon.it',
 
-    "amzn.to",
-    "twitch.tv",
+      // payments
+      'amazonpay.in',
+      'payments-amazon.com',
+      'amazonpayments.com',
+    ],
+  },
+  {
+    name: 'Twitch',
+    domains: ['twitch.tv'],
+  },
+  {
+    name: 'Prime video',
+    domains: ['amazonvideo.com', 'primevideo.com'],
+  },
+  {
+    name: 'Washington Post',
+    domains: ['washingtonpost.com'],
+  },
+  {
+    name: 'AWS',
+    domains: [
+      'aws.amazon.com',
+      'createspace.com',
+      'cloudendure.com',
+      'elasticbeanstalk.com',
+      'awsstatic.com',
+    ],
+  },
+  {
+    name: 'Audible',
+    domains: [
+      'audible.com',
+      'audible.ca',
+      'audible.co.uk',
+      'audible.de',
+      'audible.fr',
+      'audible.it',
+      'audible.com.au',
+      'audible.in',
+      'audible.co.jp',
+    ],
+  },
+  {
+    name: 'Books',
+    domains: [
+      'abebooks.com',
+      'abebooks.co.uk',
+      'abebooks.de',
+      'abebooks.fr',
+      'abebooks.it',
+      'iberlibro.com',
+      'zvab.com',
 
-    // mode
-    "zappos.com",
-    "eastdane.com",
-    "6pm.com",
-    "shopbop.com",
+      'comixology.com',
+      'comixology.eu',
+      'comixology.fr',
+      'comixology.co.uk',
 
-    // shop
-    "woot.com",
-    "fabric.com",
-    "pillpack.com",
-    "wholefoodsmarket.com",
-    "wholefoodsmarket.co.uk",
+      'goodreads.com',
+      'bookfinder.com',
+      'librarything.com',
+      'bookdepository.com',
+    ],
+  },
+  {
+    name: 'Shops',
+    domains: [
+      // mode
+      'zappos.com',
+      'eastdane.com',
+      '6pm.com',
+      'shopbop.com',
 
-    // book
-    "goodreads.com",
-    "bookfinder.com",
-    "librarything.com",
-    "bookdepository.com",
+      // shop
+      'woot.com',
+      'fabric.com',
+      'pillpack.com',
+      'wholefoodsmarket.com',
+      'wholefoodsmarket.co.uk',
+    ],
+  },
+  {
+    name: 'IMDb',
+    domain: ['imdb.com', 'boxofficemojo.com'],
+  },
+  {
+    name: 'Megalomania',
+    domain: [
+      'blueorigin.com',
+      'bezosexpeditions.com',
+      'bezosdayonefund.org',
+      'bezosfamilyfoundation.org',
+      'blinkforhome.com',
+      'blinkforhome.co.uk',
+      'blinkforhome.de',
+      '10000yearclock.net',
+      'seattlespheres.com',
 
-    // AWS
-    "createspace.com",
-    "cloudendure.com",
-    "elasticbeanstalk.com",
-    "awsstatic.com",
+      'amazonfutureengineer.com',
+      'amazonfutureengineer.co.uk',
+      'amazonfutureengineer.fr',
+    ],
+  },
+  {
+    name: 'Others',
+    domain: [
+      // tools
+      'mturk.com',
+      'eero.com',
+      'ring.com',
+      'alexa.com',
+      'amazonalexa.com',
+      'acx.com',
+      'lexcycle.com',
 
-    // press
-    "washingtonpost.com",
-    "imdb.com",
-    "boxofficemojo.com",
-    "dpreview.com",
-
-    // tools
-    "mturk.com",
-    "eero.com",
-    "ring.com",
-    "alexa.com",
-    "amazonalexa.com",
-    "acx.com",
-    "lexcycle.com",
-
-    // megalo
-    "blueorigin.com",
-    "bezosexpeditions.com",
-    "bezosdayonefund.org",
-    "bezosfamilyfoundation.org",
-    "blinkforhome.com",
-    "blinkforhome.co.uk",
-    "blinkforhome.de",
-    "10000yearclock.net",
-    "seattlespheres.com",
-
-    "amazonfutureengineer.com",
-    "amazonfutureengineer.co.uk",
-    "amazonfutureengineer.fr",
-
-    // payments
-    "amazonpay.in",
-    "payments-amazon.com",
-    "amazonpayments.com",
-
-    // other
-    "withoutabox.com",
-    "sqrrl.com",
-    "fillz.com",
-  ]
-);
+      // other
+      'withoutabox.com',
+      'sqrrl.com',
+      'fillz.com',
+      'dpreview.com',
+    ],
+  },
+]
 
 export const corpCdnDotcoms = [
-  "media-amazon.com",
-  "twitchcdn.net",
-  "cloudfront.net",
-  "amazonaws.com",
-  "images-amazon.com",
-  "ssl-images-amazon.com",
-  "aiv-cdn.net",
-  "aiv-delivery.net",
-  "media-imdb.com",
-];
-
-export const amazon = amazonDotcoms.concat(corpDotcoms);
-
+  'media-amazon.com',
+  'twitchcdn.net',
+  'cloudfront.net',
+  'amazonaws.com',
+  'images-amazon.com',
+  'ssl-images-amazon.com',
+  'aiv-cdn.net',
+  'aiv-delivery.net',
+  'media-imdb.com',
+]
 
 /**
  * Amazon
@@ -166,4 +186,12 @@ export const amazon = amazonDotcoms.concat(corpDotcoms);
  * AWS
  * Wholefood's Market
  * Others
+ */
+
+/**
+ * TODO blocks tracker and all files
+ * amazon-adsystem.com
+ * assoc-amazon.com
+ * mobileanalytics.us-east-1.amazonaws.com
+ * alexa-sitestats.s3.amazonaws.com
  */

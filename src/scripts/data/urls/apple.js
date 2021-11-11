@@ -1,21 +1,31 @@
 import { getTLDs } from "../tlds";
 
-export const appleDotcoms = getTLDs("apple");
-
-export const corpDotcoms = [].concat([
-  "shazam.com",
-  "beatsbydre.com",
-  "workflow.is",
-  "beddit.com",
-]);
+export const apple = [
+  {
+    name: 'Apple',
+    domains: [...getTLDs('apple')],
+  },
+  {
+    name: 'Others',
+    domains: [
+      "shazam.com",
+      "beatsbydre.com",
+      "workflow.is",
+      "beddit.com",
+    ],
+  },
+]
 
 export const corpCdnDotcoms = [];
-
-export const apple = appleDotcoms.concat(corpDotcoms);
 
 /**
  * Apple
  * 
  * Shazam
  * Beats by Dre
+ */
+
+/**
+ * blocks trackers and all files
+ * securemetrics.apple.com
  */
