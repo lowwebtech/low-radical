@@ -1,3 +1,7 @@
+## 0.2.0
+- remove mode "degrade"
+- remove AWS detection
+
 ## 0.1.2
 - update README
 - blocks GAFAM by country TLDs (eg: google.fr|de|co.jp|...)

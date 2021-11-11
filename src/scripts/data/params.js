@@ -1,24 +1,33 @@
-import browser from "webextension-polyfill";
+import browser from 'webextension-polyfill'
 
 export const params = [
-  "blockType",
-  "awsDetect",
-  "google",
-  "amazon",
-  "facebook",
-  "apple",
-  "microsoft",
-  // replaceBy
-];
+  'blockType',
+  'whitelist',
 
-export function getParams(callback, onChanged) {
-  const gettingItem = browser.storage.local.get(params);
-  gettingItem.then(callback, (error) => {
-    console.log(error);
-  });
+  'google',
+  'amazon',
+  'facebook',
+  'apple',
+  'microsoft',
 
-  // const gettingItem = browser.storage.local.get(params)
-  // gettingItem.then(onGot, onError)
+  // "awsDetect",
+  // "replaceBy",
+]
 
-  // browser.storage.onChanged.addListener(onChanged)
+export function setDefaultParams() {
+  return setParams({
+    blockType: 'blockAll',
+    whitelist: [],
+    google: false,
+    amazon: true,
+    facebook: false,
+    apple: false,
+    microsoft: false,
+  })
+}
+export function setParams(p) {
+  browser.storage.local.set(p)
+}
+export function getParams() {
+  return browser.storage.local.get(params)
 }
