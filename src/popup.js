@@ -1,12 +1,10 @@
-import browser from 'webextension-polyfill'
-
-require('./styles/styles.scss')
-require('./scripts/comp/form.js')
+require("./styles/styles.scss");
+require("./scripts/comp/form.js");
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   const btWhitelist = document.querySelector('button.whitelist')
 //   btWhitelist.addEventListener('click', () => {
-    
+
 //     const tab = getCurrentTab()
 //     console.log(tab)
 

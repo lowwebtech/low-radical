@@ -32,9 +32,11 @@ const manifestInput = {
     name: "lowwebtech",
   },
 
-  __firefox__applications: {
-    gecko: { id: "{754FB1AD-CC3B-4856-B6A0-7786F8CA9D17}" },
-  },
+  // __firefox__applications: {
+  //   gecko: {
+  //     id: '754fb1ad-cc3b-4856-b6a0-7786f8ca9d17',
+  //   },
+  // },
 
   __chrome__minimum_chrome_version: "49",
   __opera__minimum_opera_version: "36",
@@ -52,11 +54,11 @@ const manifestInput = {
     __firefox__browser_style: false,
   },
 
-  __firefox__browser_specific_settings: {
-    "gecko": {
-      "id": "754FB1AD-CC3B-4856-B6A0-7786F8CA9D17",
-    }
-  },
+  // __firefox__browser_specific_settings: {
+  //   gecko: {
+  //     id: '754fb1ad-cc3b-4856-b6a0-7786f8ca9d17',
+  //   },
+  // },
 
   "__chrome|opera__options_page": "options.html",
 

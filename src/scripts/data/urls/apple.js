@@ -1,23 +1,21 @@
-import { getTLDs } from '../tlds'
-
 export const apple = {
-  id: 'apple',
-  name: 'Apple',
+  id: "apple",
+  name: "Apple",
   subgroups: [
     {
-      id: 'apple_com',
-      name: 'Apple.com',
-      domains: ['apple.com'],
+      id: "apple_com",
+      name: "Apple.com",
+      domains: ["apple.com"],
     },
     {
-      id: 'apple_others',
-      name: 'Others',
-      domains: ['shazam.com', 'beatsbydre.com', 'workflow.is', 'beddit.com'],
+      id: "apple_others",
+      name: "Others",
+      domains: ["shazam.com", "beatsbydre.com", "workflow.is", "beddit.com"],
     },
   ],
-}
+};
 
-export const corpCdnDotcoms = []
+export const corpCdnDotcoms = [];
 
 /**
  * Apple

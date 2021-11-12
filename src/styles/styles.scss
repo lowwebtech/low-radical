@@ -1,5 +1,5 @@
-@import 'base/mixins';
-@import 'base/reset';
+@import "base/mixins";
+@import "base/reset";
 
 :root {
   --primary-color: #f99;
@@ -17,7 +17,7 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: 100%;
   background-color: var(--dark-color);
   line-height: 1.5;
@@ -152,8 +152,9 @@ a {
 .subgroup {
   height: 0;
   overflow: hidden;
-  opacity: .5;
+  opacity: 0.5;
   pointer-events: none;
+  transition: 0.2s ease;
   .opened & {
     border-top: 1px dashed var(--border-color);
     height: auto;
@@ -190,7 +191,7 @@ a {
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 2px;
     left: 2px;
@@ -243,7 +244,7 @@ a {
   color: var(--primary-color);
   background: transparent;
   text-decoration: underline;
-  transition: .2s ease;
+  transition: 0.2s ease;
   margin-right: rem(25);
   &:hover {
     color: white;

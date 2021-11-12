@@ -1,11 +1,11 @@
-@use 'sass:math';
+@use "sass:math";
 
 $breakpoints: (
-  'small': 400px,
+  "small": 400px,
 );
 
 $breakpointsH: (
-  'small': 560px,
+  "small": 560px,
 );
 
 @mixin motion() {

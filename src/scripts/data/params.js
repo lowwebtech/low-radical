@@ -1,35 +1,34 @@
-import browser from 'webextension-polyfill'
-import { subgroupIds } from './datas'
-const params = ['whitelist', ...subgroupIds]
+import browser from "webextension-polyfill";
+import { subgroupIds } from "./datas";
+
+const params = ["whitelist", ...subgroupIds];
 
 export async function initParams() {
-  const keys = getParams()
-  const localParams = getLocalParams(keys)
+  const keys = getParams();
+  const localParams = getLocalParams(keys);
 
   await localParams.then((local) => {
-    const o = {}
+    const o = {};
     keys.forEach((key) => {
-      if (typeof local[key] === 'undefined') {
-        console.log('key', key)
-        o[key] = true
+      if (typeof local[key] === "undefined") {
+        console.log("key", key);
+        o[key] = true;
       }
-    })
+    });
 
-    if (typeof local.whitelist === 'undefined') o.whitelist = []
+    if (typeof local.whitelist === "undefined") o.whitelist = [];
 
-    setParams(o)
-
-    return
-  }, console.error)
+    setParams(o);
+  }, console.error);
 }
 export function setParams(p) {
-  browser.storage.local.set(p)
+  browser.storage.local.set(p);
 }
 export function getParams() {
-  return params
+  return params;
 }
 
 export function getLocalParams(params) {
-  const p = params || getParams()
-  return browser.storage.local.get(p)
+  const p = params || getParams();
+  return browser.storage.local.get(p);
 }

@@ -10,24 +10,36 @@
   <body class="popup-page">
     <div class="container">
       <%= require('html-loader!./partials/_header.html').default %>
-      
+
       <main>
+        <%= require('html-loader!./partials/_form.html').default %>
 
-        <p class="content">
-          <button class="button whitelist">Whitelist</button>
-        </p>
-
-        <%= require('html-loader!./partials/_form.html').default %>      
-  
         <ul class="list">
           <li class="color">
-            <svg fill="none" height="18" viewBox="0 0 18 18" width="18" xmlns="http://www.w3.org/2000/svg"><g stroke="currentColor"><path d="m6 9 2.15385 2 3.84615-4" stroke-linecap="round" stroke-linejoin="round"/><rect height="17" rx="8.5" width="17" x=".5" y=".5"/></g></svg>
+            <svg
+              fill="none"
+              height="18"
+              viewBox="0 0 18 18"
+              width="18"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g stroke="currentColor">
+                <path
+                  d="m6 9 2.15385 2 3.84615-4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <rect height="17" rx="8.5" width="17" x=".5" y=".5" />
+              </g>
+            </svg>
             <span class="white">All subdomains blocked</span>
           </li>
         </ul>
-  
-        <a href="options.html" target="_blank" class="link">Whitelist subdomains <img src="assets/arrow.svg" width="6" height="10" /></a>
 
+        <a href="options.html" target="_blank" class="link"
+          >Whitelist subdomains
+          <img src="assets/arrow.svg" width="6" height="10"
+        /></a>
       </main>
     </div>
   </body>

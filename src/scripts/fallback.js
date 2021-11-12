@@ -1,11 +1,11 @@
-import { parseURL } from './data/urls'
+import { parseURL } from "./data/urls";
 
 document.addEventListener("DOMContentLoaded", () => {
   const url = getOriginUrl();
-  const host = parseURL(url).hostname.replace('www.','')
+  const host = parseURL(url).hostname.replace("www.", "");
   document.title = host + " is blocked by low-radical";
   document.querySelector("h1 span").innerText = host;
-  document.body.dataset.origin = url
+  document.body.dataset.origin = url;
 });
 
 function getOriginUrl() {

@@ -1,63 +1,61 @@
-import { getTLDs } from '../tlds'
-
 export const microsoft = {
-  id: 'microsoft',
-  name: 'Microsoft',
+  id: "microsoft",
+  name: "Microsoft",
   subgroups: [
     {
-      id: 'microsoft_com',
-      name: 'Microsoft.com',
-      domains: ['microsoft.com'],
+      id: "microsoft_com",
+      name: "Microsoft.com",
+      domains: ["microsoft.com"],
     },
     {
-      id: 'microsoft_bing',
-      name: 'Bing',
-      domains: ['bing.com'],
+      id: "microsoft_bing",
+      name: "Bing",
+      domains: ["bing.com"],
     },
     {
-      id: 'microsoft_outlook',
-      name: 'Outlook',
-      domains: ['hotmail.com', 'outlook.com', 'live.com'],
+      id: "microsoft_outlook",
+      name: "Outlook (hotmail, live)",
+      domains: ["hotmail.com", "outlook.com", "live.com"],
     },
     {
-      id: 'microsoft_office',
-      name: 'Office',
-      domains: ['office.com'],
+      id: "microsoft_office",
+      name: "Office",
+      domains: ["office.com", "yammer.com"],
     },
     {
-      id: 'linkedin',
-      name: 'Linkedin',
-      domains: ['linkedin.com'],
+      id: "linkedin",
+      name: "Linkedin",
+      domains: ["linkedin.com"],
     },
     {
-      id: 'skype',
-      name: 'Skype',
-      domains: ['skype.com'],
+      id: "skype",
+      name: "Skype",
+      domains: ["skype.com"],
     },
     {
-      id: 'github',
-      name: 'Github',
-      domains: ['github.com'],
+      id: "github",
+      name: "Github",
+      domains: ["github.com"],
     },
     {
-      id: 'msn',
-      name: 'MSN',
-      domains: ['msn.com'],
+      id: "msn",
+      name: "MSN",
+      domains: ["msn.com"],
     },
     {
-      id: 'minecraft',
-      name: 'Minecraft',
-      domains: ['minecraft.com'],
+      id: "minecraft",
+      name: "Minecraft",
+      domains: ["minecraft.com"],
     },
     {
-      id: 'microsoft_others',
-      name: 'Others',
-      domains: ['yammer.com', 'xbox.com'],
+      id: "microsoft_others",
+      name: "Others (xbox...)",
+      domains: ["xbox.com"],
     },
   ],
-}
+};
 
-export const corpCdnDotcoms = ['lpsnmedia.net', 'liveperson.net']
+export const corpCdnDotcoms = ["lpsnmedia.net", "liveperson.net"];
 
 /**
  * Microsoft

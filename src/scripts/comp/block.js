@@ -1,5 +1,5 @@
 import browser from "webextension-polyfill";
-import { formatDotcoms, parseURL, getDotComs } from "../data/urls";
+import { formatDotcoms, getDotComs } from "../data/urls";
 
 let isBlocking = false;
 export function block() {
@@ -8,7 +8,7 @@ export function block() {
 
     getDotComs().then(
       (dotcoms) => {
-        console.log('DOTCOMS', dotcoms)
+        console.log("DOTCOMS", dotcoms);
 
         browser.webRequest.onBeforeRequest.addListener(
           blockDotComs,
@@ -35,9 +35,6 @@ export function unblock() {
 
 function blockDotComs(requestDetails) {
   const { type, url } = requestDetails;
-  // // const hostname = parseURL(url).hostnam
-  // console.log('block', url)
-  // console.log(requestDetails);
 
   const r = {};
   if (type === "main_frame") {
