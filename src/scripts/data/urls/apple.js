@@ -5,7 +5,7 @@ export const apple = {
     {
       id: "apple_com",
       name: "Apple.com",
-      domains: ["apple.com"],
+      domains: ["apple.com", 'apple'],
     },
     {
       id: "apple_others",

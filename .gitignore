@@ -108,3 +108,5 @@ extension
 
 __STUFF
 test/__screenshots/*
+
+.DS_Store
