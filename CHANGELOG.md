@@ -1,4 +1,6 @@
 ## 0.2.0
+- New UI by @kuroneko_io thanks !
+- New blacklist/whitelist by subgroups / services
 - remove mode "degrade"
 - remove AWS detection
 
