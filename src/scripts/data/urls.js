@@ -1,38 +1,34 @@
-import browser from 'webextension-polyfill'
-
-import { params } from '../data/params'
-
-import { google } from '../data/urls/google'
-import { amazon } from '../data/urls/amazon'
-import { facebook } from '../data/urls/facebook'
-import { apple } from '../data/urls/apple'
-import { microsoft } from '../data/urls/microsoft'
+import { getLocalParams } from '../data/params'
+import { all } from '../data/datas'
 
 export async function getDotComs() {
-  return browser.storage.local.get(params).then(
-    (result) => {
+  return getLocalParams().then(
+    (local) => {
       const dotcoms = []
+      all.forEach(group => {
+        // test if group is active (local param = true)
+        if(local[group.id] === true) {
+          group.subgroups.forEach(subgroup => {
+            // test if SUBgroup is active (local param = true)
+            if(local[subgroup.id] === true){
+              dotcoms.push(subgroup.domains)
+            }
+          });
+        }
+      });
 
-      if (result.google) dotcoms.push(getGroupedDotcoms(google))
-      if (result.amazon) dotcoms.push(getGroupedDotcoms(amazon))
-      if (result.facebook) dotcoms.push(getGroupedDotcoms(facebook))
-      if (result.apple) dotcoms.push(getGroupedDotcoms(apple))
-      if (result.microsoft) dotcoms.push(getGroupedDotcoms(microsoft))
-
+      // if (local.google) dotcoms.push(getGroupedDotcoms(google.subgroups))
+      // if (local.amazon) dotcoms.push(getGroupedDotcoms(amazon.subgroups))
+      // if (local.facebook) dotcoms.push(getGroupedDotcoms(facebook.subgroups))
+      // if (local.apple) dotcoms.push(getGroupedDotcoms(apple.subgroups))
+      // if (local.microsoft) dotcoms.push(getGroupedDotcoms(microsoft.subgroups))
+      
       return dotcoms.flat()
     },
     (error) => {
       console.log(error)
     },
   )
-}
-
-function getGroupedDotcoms(corp) {
-  const dotcoms = corp.map((group) => {
-    return group.domains
-  })
-  
-  return dotcoms.flat()
 }
 
 export function formatDotcoms(array) {
@@ -67,4 +63,12 @@ export function parseURL(url) {
     searchObject: searchObject,
     hash: parser.hash,
   }
+}
+
+function getGroupedDotcoms(corp) {
+  const dotcoms = corp.map((group) => {
+    return group.domains
+  })
+
+  return dotcoms.flat()
 }

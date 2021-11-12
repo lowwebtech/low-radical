@@ -1,114 +1,182 @@
-import browser from "webextension-polyfill";
-import { params, setParams } from "../data/params";
+import { getLocalParams, setParams } from '../data/params'
+import { all, subgroupIds } from '../data/datas'
 
-const Optional = class {
-  constructor(el) {
-    this.el = el;
-    this.id = el.id;
+// const Optional = class {
+//   constructor(el) {
+//     this.el = el
+//     this.id = el.id
 
-    this.active = false;
-    this.value = "";
+//     this.active = false
+//     this.value = ''
 
-    this.cbEl = this.el.querySelector(".optional__cb");
-    this.valueEl = this.el.querySelector(".optional__value");
+//     this.cbEl = this.el.querySelector('.optional__cb')
+//     this.valueEl = this.el.querySelector('.optional__value')
 
-    this.cbEl.addEventListener("input", () => {
-      this.update();
-    });
-  }
+//     this.cbEl.addEventListener('input', () => {
+//       this.update()
+//     })
+//   }
 
-  update() {
-    this.active = this.cbEl.checked;
-    if (this.active) {
-      this.el.classList.add("optional--active");
-    } else {
-      this.el.classList.remove("optional--active");
-    }
-  }
+//   update() {
+//     this.active = this.cbEl.checked
+//     if (this.active) {
+//       this.el.classList.add('optional--active')
+//     } else {
+//       this.el.classList.remove('optional--active')
+//     }
+//   }
 
-  restore(data) {
-    if (data) {
-      this.cbEl.checked = data.active;
-      this.valueEl.value = data.value;
-    } else {
-      this.active = this.cbEl.checked;
-      this.value = this.valueEl.value;
-    }
+//   restore(data) {
+//     if (data) {
+//       this.cbEl.checked = data.active
+//       this.valueEl.value = data.value
+//     } else {
+//       this.active = this.cbEl.checked
+//       this.value = this.valueEl.value
+//     }
 
-    this.update();
-  }
+//     this.update()
+//   }
 
-  getData() {
-    this.active = this.cbEl.checked;
-    this.value = this.valueEl.value;
+//   getData() {
+//     this.active = this.cbEl.checked
+//     this.value = this.valueEl.value
 
-    return {
-      active: this.active,
-      value: this.value,
-    };
-  }
-};
+//     return {
+//       active: this.active,
+//       value: this.value,
+//     }
+//   }
+// }
 
 function save() {
-  const data = {
-    google: document.querySelector('input[name="google"]').checked,
-    amazon: document.querySelector('input[name="amazon"]').checked,
-    facebook: document.querySelector('input[name="facebook"]').checked,
-    apple: document.querySelector('input[name="apple"]').checked,
-    microsoft: document.querySelector('input[name="microsoft"]').checked,
-  };
+  const data = {}
 
-  for (let i = 0, lg = optionals.length; i < lg; i++) {
-    const optional = optionals[i];
-    data[optional.id] = optional.getData();
-  }
+  const inputs = document.querySelectorAll('input[type=checkbox]')
+  inputs.forEach((input) => {
+    data[input.name] = input.checked
+  })
 
   setParams(data)
 }
 
-function restore() {
-  const getting = browser.storage.local.get(params);
+async function restore() {
+  const getting = getLocalParams()
 
-  getting.then(
-    (result) => {
-      console.log("RESULT", result);
+  await getting.then(
+    (local) => {
+      console.log('local', local)
 
-      document.querySelector('input[name="google"]').checked =
-        result.google === undefined ? true : result.google;
-      document.querySelector('input[name="amazon"]').checked =
-        result.amazon === undefined ? true : result.amazon;
-      document.querySelector('input[name="facebook"]').checked =
-        result.facebook === undefined ? true : result.facebook;
-      document.querySelector('input[name="apple"]').checked =
-        result.apple === undefined ? true : result.apple;
-      document.querySelector('input[name="microsoft"]').checked =
-        result.microsoft === undefined ? true : result.microsoft;
+      let fragment = new DocumentFragment()
+      all.forEach((group) => {
+        const checked = local[group.id] ? 'checked' : ''
+        const li = document.createElement('li')
+        li.classList.add('group')
+        if(checked) li.classList.add('active')
 
-      for (let i = 0, lg = optionals.length; i < lg; i++) {
-        const optional = optionals[i];
-        optional.restore(result[optional.id]);
-      }
+        li.innerHTML = `
+        <p class="option">
+          <label for="${group.id}">${group.name}</label>
+          <span>
+            <button class="button-link">Whitelist</button>
+            <input
+              type="checkbox"
+              class="checkbox"
+              name="${group.id}"
+              id="${group.id}"
+              value="${group.id}"
+              ${checked}
+            />
+          </span>
+        </p>
+        `
+
+        const sub = document.createElement('div')
+        sub.classList.add('subgroup')
+        const sublist = document.createElement('ul')
+        group.subgroups.forEach((subgroup) => {
+          const checked = local[subgroup.id] ? 'checked' : ''
+
+          const subli = document.createElement('li')
+          subli.innerHTML = `
+          <p class="option">
+            <label for="${subgroup.id}">${subgroup.name}</label>
+            <input
+              type="checkbox"
+              class="checkbox"
+              name="${subgroup.id}"
+              id="${subgroup.id}"
+              value="${subgroup.id}"
+              ${checked}
+            />
+          </p>
+          `
+          sublist.appendChild(subli)
+        })
+        sub.appendChild(sublist)
+
+        li.appendChild(sub)
+        fragment.appendChild(li)
+      })
+      console.log(fragment)
+
+      document.querySelector('form > ul').appendChild(fragment)
+
+      // for (let i = 0, lg = optionals.length; i < lg; i++) {
+      //   const optional = optionals[i]
+      //   optional.restore(local[optional.id])
+      // }
     },
     (error) => {
-      console.log(`Error: ${error}`);
-    }
-  );
+      console.log(`Error: ${error}`)
+    },
+  )
 }
 
-const optionals = [];
+const optionals = []
 
-document.addEventListener("DOMContentLoaded", () => {
-  const optionalEls = document.querySelectorAll(".optional");
-  optionalEls.forEach((el) => {
-    optionals.push(new Optional(el));
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  restore().then(() => {
+    // const groups = []
+    // const groupEls = document.querySelectorAll('.group')
+    // groupEls.forEach((el) => {
+    //   groups.push(new Group(el))
+    // })
 
-  const inputs = document.querySelectorAll("input");
-  inputs.forEach((input) => {
-    input.addEventListener("input", (e) => {
-      save();
-    });
-  });
+    const inputs = document.querySelectorAll('input')
+    inputs.forEach((input) => {
+      input.addEventListener('input', (e) => {
+        save()
+      })
+    })
 
-  restore();
-});
+    const groups = document.querySelectorAll('.group')
+    groups.forEach((group) => {
+      const inputsGroup = group.querySelectorAll(':scope > .option input')
+      inputsGroup.forEach((input) => {
+        console.log(input)
+        input.addEventListener('input', (e) => {
+          if(e.currentTarget.checked){
+            group.classList.add('active')
+          }else{
+            group.classList.remove('active')
+          }
+        })
+      })
+
+      const buttonGroup = group.querySelectorAll(':scope > .option button')
+      buttonGroup.forEach((button) => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault()
+          if(group.classList.contains('opened')){
+            group.classList.remove('opened')
+            button.innerHTML = 'Whitelist'
+          }else{
+            group.classList.add('opened')
+            button.innerHTML = 'Close'
+          }
+        })
+      })
+    })
+  }, console.error)
+})

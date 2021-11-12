@@ -1,32 +1,35 @@
 import browser from 'webextension-polyfill'
+import { subgroupIds } from './datas'
+const params = ['whitelist', ...subgroupIds]
 
-export const params = [
-  'whitelist',
+export async function initParams() {
+  const keys = getParams()
+  const localParams = getLocalParams(keys)
 
-  'google',
-  'amazon',
-  'facebook',
-  'apple',
-  'microsoft',
+  await localParams.then((local) => {
+    const o = {}
+    keys.forEach((key) => {
+      if (typeof local[key] === 'undefined') {
+        console.log('key', key)
+        o[key] = true
+      }
+    })
 
-  // "awsDetect",
-  // "replaceBy",
-]
+    if (typeof local.whitelist === 'undefined') o.whitelist = []
 
-export function setDefaultParams() {
-  return setParams({
-    whitelist: [],
-    
-    google: false,
-    amazon: true,
-    facebook: false,
-    apple: false,
-    microsoft: false,
-  })
+    setParams(o)
+
+    return
+  }, console.error)
 }
 export function setParams(p) {
   browser.storage.local.set(p)
 }
 export function getParams() {
-  return browser.storage.local.get(params)
+  return params
+}
+
+export function getLocalParams(params) {
+  const p = params || getParams()
+  return browser.storage.local.get(p)
 }

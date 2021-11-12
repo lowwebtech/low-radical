@@ -8,8 +8,10 @@
   --inactive-color: #999;
   --padding: 1rem 1.3rem;
   --font-big: 0.9375rem;
+  --font-small: 0.75rem;
   @include above(small) {
     --font-big: 1.25rem;
+    --font-small: 0.875rem;
     --padding: 1.2rem 0;
   }
 }
@@ -52,7 +54,7 @@ a {
   line-height: 1.75;
   margin-bottom: 1.6rem;
   padding: 0 1.3rem;
-  @include above(small){
+  @include above(small) {
     padding: 0;
   }
 
@@ -137,10 +139,37 @@ a {
   display: flex;
   justify-content: space-between;
   padding: var(--padding);
-  border-bottom: 1px solid var(--border-color);
   font-size: var(--font-big);
+}
+
+.group {
+  border-bottom: 1px solid var(--border-color);
   &:first-child {
     border-top: 1px solid var(--border-color);
+  }
+}
+
+.subgroup {
+  height: 0;
+  overflow: hidden;
+  opacity: .5;
+  pointer-events: none;
+  .opened & {
+    border-top: 1px dashed var(--border-color);
+    height: auto;
+  }
+  .active & {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  > ul {
+    padding: var(--padding);
+  }
+  .option {
+    border: 0;
+    font-size: var(--font-small);
+    padding: 4px 0;
+    line-height: 1.6;
   }
 }
 
@@ -149,10 +178,16 @@ a {
   appearance: none;
   width: 44px;
   height: 24px;
-  background-color: var(--inactive-color);
   border-radius: 24px;
+  background-color: var(--inactive-color);
   transition-duration: 0.2s;
   vertical-align: middle;
+
+  .subgroup & {
+    width: 24px;
+    height: 14px;
+    border-radius: 14px;
+  }
 
   &:after {
     content: '';
@@ -166,12 +201,20 @@ a {
     will-change: transform;
     transition-duration: 0.2s;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
+
+    .subgroup & {
+      width: 10px;
+      height: 10px;
+    }
   }
 
   &:checked {
     background-color: var(--primary-color);
     &:after {
       transform: translateX(20px);
+      .subgroup & {
+        transform: translateX(10px);
+      }
     }
   }
 }
@@ -190,5 +233,19 @@ a {
   padding: 0 1rem;
   &:hover {
     background-color: var(--primary-color);
+  }
+}
+
+.button-link {
+  cursor: pointer;
+  font-size: var(--font-small);
+  appearance: none;
+  color: var(--primary-color);
+  background: transparent;
+  text-decoration: underline;
+  transition: .2s ease;
+  margin-right: rem(25);
+  &:hover {
+    color: white;
   }
 }

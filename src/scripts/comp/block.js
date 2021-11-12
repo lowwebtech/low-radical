@@ -36,7 +36,7 @@ export function unblock() {
 function blockDotComs(requestDetails) {
   const { type, url } = requestDetails;
   // // const hostname = parseURL(url).hostnam
-  console.log('block', url)
+  // console.log('block', url)
   // console.log(requestDetails);
 
   const r = {};

@@ -1,47 +1,61 @@
 import { getTLDs } from '../tlds'
 
-export const microsoft = [
-  {
-    name: 'Microsoft',
-    domains: [...getTLDs('microsoft')],
-  },
-  {
-    name: 'Bing',
-    domains: ['bing.com'],
-  },
-  {
-    name: 'Outlook',
-    domains: ['hotmail.com', 'outlook.com', 'live.com'],
-  },
-  {
-    name: 'Office',
-    domains: ['office.com'],
-  },
-  {
-    name: 'Linkedin',
-    domains: ['linkedin.com'],
-  },
-  {
-    name: 'Skype',
-    domains: ['skype.com'],
-  },
-  {
-    name: 'Github',
-    domains: ['github.com'],
-  },
-  {
-    name: 'MSN',
-    domains: ['msn.com'],
-  },
-  {
-    name: 'Minecraft',
-    domains: ['minecraft.com'],
-  },
-  {
-    name: 'Others',
-    domains: ['yammer.com','xbox.com',],
-  },
-]
+export const microsoft = {
+  id: 'microsoft',
+  name: 'Microsoft',
+  subgroups: [
+    {
+      id: 'microsoft_com',
+      name: 'Microsoft.com',
+      domains: ['microsoft.com'],
+    },
+    {
+      id: 'microsoft_bing',
+      name: 'Bing',
+      domains: ['bing.com'],
+    },
+    {
+      id: 'microsoft_outlook',
+      name: 'Outlook',
+      domains: ['hotmail.com', 'outlook.com', 'live.com'],
+    },
+    {
+      id: 'microsoft_office',
+      name: 'Office',
+      domains: ['office.com'],
+    },
+    {
+      id: 'linkedin',
+      name: 'Linkedin',
+      domains: ['linkedin.com'],
+    },
+    {
+      id: 'skype',
+      name: 'Skype',
+      domains: ['skype.com'],
+    },
+    {
+      id: 'github',
+      name: 'Github',
+      domains: ['github.com'],
+    },
+    {
+      id: 'msn',
+      name: 'MSN',
+      domains: ['msn.com'],
+    },
+    {
+      id: 'minecraft',
+      name: 'Minecraft',
+      domains: ['minecraft.com'],
+    },
+    {
+      id: 'microsoft_others',
+      name: 'Others',
+      domains: ['yammer.com', 'xbox.com'],
+    },
+  ],
+}
 
 export const corpCdnDotcoms = ['lpsnmedia.net', 'liveperson.net']
 
