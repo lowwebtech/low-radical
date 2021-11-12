@@ -107,3 +107,4 @@ extension
 *.code-workspace
 
 __STUFF
+test/__screenshots/*
