@@ -68,6 +68,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         { from: '_locales', to: '_locales' },
+        { from: 'rules.json', to: 'rules.json' },
         { from: 'src/assets', to: 'assets' },
       ],
     }),

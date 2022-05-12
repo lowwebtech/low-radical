@@ -1,23 +1,21 @@
 import browser from "webextension-polyfill";
 
-import { block, unblock } from "./comp/block";
+// import { block, unblock } from "./comp/block";
 import { initParams, getLocalParams } from "./data/params";
-import RequestManager from "./managers/RequestManager";
+// import RequestManager from "./managers/RequestManager";
 
-RequestManager.init();
+// RequestManager.init();
 
 function start() {
-  console.log("START");
-  block();
-
-  browser.storage.onChanged.addListener(update);
+  // block();
 }
 
-function update() {
-  unblock();
-  block();
-}
+// function update() {
+//   unblock();
+//   block();
+// }
 
+// browser.storage.onChanged.addListener(update);
 browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
   // if (temporary) return; // skip during development
 

@@ -46,6 +46,9 @@ export const amazon = {
         "assoc-amazon.fr",
         "assoc-amazon.it",
 
+        "amazon-affiliate.eu",
+        "partenaires.amazon.fr",
+
         // payments
         "amazonpay.in",
         "payments-amazon.com",
