@@ -1,5 +1,6 @@
-require('dotenv');
+// require('dotenv');
 
+console.log(process.env.LOCAL_EXTENSION_ID);
 const extensionId = process.env.LOCAL_EXTENSION_ID; // 'aliphkafmeldgkmmjlhgpbleaicgbamj';
 const chromeExtPath = `chrome-extension://${extensionId}/`;
 
