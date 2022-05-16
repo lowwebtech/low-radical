@@ -1,36 +1,13 @@
-import browser from "webextension-polyfill";
+import browser from 'webextension-polyfill'
+import { initParams } from './data/params'
 
-// import { block, unblock } from "./comp/block";
-import { initParams, getLocalParams } from "./data/params";
-// import RequestManager from "./managers/RequestManager";
-
-// RequestManager.init();
-
-function start() {
-  // block();
-}
-
-// function update() {
-//   unblock();
-//   block();
-// }
-
-// browser.storage.onChanged.addListener(update);
 browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
   // if (temporary) return; // skip during development
-
   switch (reason) {
-    case "install":
-      await browser.runtime.openOptionsPage();
-      break;
+    case 'install':
+      await browser.runtime.openOptionsPage()
+      break
   }
-});
+})
 
-initParams().then(() => start(), console.error);
-
-// browser.storage.local.clear()
-// browser.storage.sync.clear()
-
-getLocalParams().then((p) => {
-  console.log("PARAMS", p);
-}, console.error);
+initParams().then(() => {}, console.error)

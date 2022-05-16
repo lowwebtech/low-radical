@@ -1,49 +1,38 @@
-import browser from "webextension-polyfill";
-import { formatDotcoms, getDotComs } from "../data/urls";
+import browser from 'webextension-polyfill'
+import { getDotComs } from '../data/urls'
 
-let isBlocking = false;
-export function block() {
-  if (!isBlocking) {
-    isBlocking = true;
-
-    getDotComs().then(
-      (dotcoms) => {
-        console.log("DOTCOMS", dotcoms);
-
-        browser.webRequest.onBeforeRequest.addListener(
-          blockDotComs,
-          {
-            urls: formatDotcoms(dotcoms),
-            types: ["main_frame", "sub_frame"],
+export function updateBlockingRules() {
+  getDotComs().then((dotcoms) => {
+    // console.log(dotcoms)
+    browser.declarativeNetRequest.getDynamicRules().then((rules) => {
+      // console.log('--->', rules)
+      const oldRuleIds = rules.map((rule, i) => i + 1)
+      const newRules = dotcoms.map((dotcom, i) => {
+        return {
+          id: i + 1,
+          priority: 1,
+          action: {
+            type: 'block',
           },
-          ["blocking"]
-        );
-      },
-      (e) => {
-        console.log("error", e);
-      }
-    );
-  }
-}
+          condition: {
+            urlFilter: dotcom,
+            resourceTypes: ['main_frame'],
+          },
+        }
+      })
 
-export function unblock() {
-  if (isBlocking) {
-    isBlocking = false;
-    browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
-  }
-}
+      // console.log(oldRuleIds)
+      console.log('new', newRules)
+      console.log('new', newRules.length)
 
-function blockDotComs(requestDetails) {
-  const { type, url } = requestDetails;
+      browser.declarativeNetRequest.updateDynamicRules({
+        removeRuleIds: oldRuleIds,
+        addRules: newRules,
+      })
 
-  const r = {};
-  if (type === "main_frame") {
-    r.redirectUrl = browser.runtime.getURL(
-      "assets/fallback.html?from=" + encodeURIComponent(url)
-    );
-  } else {
-    r.cancel = true;
-  }
-
-  return r;
+      browser.declarativeNetRequest.getDynamicRules().then((rules) => {
+        console.log('current', rules.length)
+      })
+    })
+  })
 }

@@ -5,10 +5,12 @@ const manifestInput = {
   name: '__MSG_extensionName__',
   version: pkg.version,
   default_locale: 'en_US',
-  web_accessible_resources: [{ 
-    "resources": ['assets/*'],
-    "matches": ['*://*/*']
-  }],
+  web_accessible_resources: [
+    {
+      resources: ['assets/*'],
+      matches: ['*://*/*'],
+    },
+  ],
 
   icons: {
     16: 'assets/icons/favicon-16.png',
@@ -21,46 +23,48 @@ const manifestInput = {
   homepage_url: 'https://github.com/lowwebtech/low-radical',
   short_name: 'low-radical',
 
-  permissions: [
-    'tabs',
-    'storage',
-    // 'webRequest',
-    // 'webRequestBlocking',
-    // 'webNavigation', 
-    "*://*.google.com/*",
-    'declarativeNetRequest',
-    // '<all_urls>',
-  ],
-
-  "host_permissions": [
-    "*://*/*"
-  ],
-
-  "declarative_net_request": {
-    "rule_resources": [{
-      "id": "ruleset_1",
-      "enabled": true,
-      "path": "rules.json"
-    }]
-  },
-
-  // content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
-
   '__chrome|firefox__author': 'lowwebtech',
   __opera__developer: {
     name: 'lowwebtech',
   },
 
-  // __firefox__applications: {
-  //   gecko: {
-  //     id: '754fb1ad-cc3b-4856-b6a0-7786f8ca9d17',
-  //   },
-  // },
+  host_permissions: ['*://*/*'],
 
-  __chrome__minimum_chrome_version: '49',
-  __opera__minimum_opera_version: '36',
+  __chrome__permissions: [
+    'tabs',
+    'storage',
+    'declarativeNetRequest',
+    // "*://*.amazon.com/*",
+  ],
 
-  // browser_action: {
+  __firefox__permissions: [
+    'tabs',
+    'storage',
+    'webRequest',
+    'webNavigation',
+    '<all_urls>',
+  ],
+
+  __chrome__declarative_net_request: {
+    rule_resources: [
+      // {
+      //   id: 'ruleset_amazon',
+      //   enabled: true,
+      //   path: 'rules/amazon.json',
+      // },
+      // {
+      //   id: 'ruleset_facebook',
+      //   enabled: true,
+      //   path: 'rules/facebook.json',
+      // },
+      // {
+      //   id: 'ruleset_1',
+      //   enabled: true,
+      //   path: 'rules/rules.json',
+      // },
+    ],
+  },
+
   action: {
     default_popup: 'popup.html',
     default_icon: {
@@ -70,36 +74,29 @@ const manifestInput = {
       128: 'assets/icons/favicon-128.png',
     },
     default_title: 'low-radical',
-    // '__chrome|opera__chrome_style': false,
-    __firefox__browser_style: false,
   },
-
-  // __firefox__browser_specific_settings: {
-  //   gecko: {
-  //     id: '754fb1ad-cc3b-4856-b6a0-7786f8ca9d17',
-  //   },
-  // },
 
   '__chrome|opera__options_page': 'options.html',
 
   options_ui: {
     page: 'options.html',
     open_in_tab: true,
-    // __chrome__chrome_style: false,
   },
 
-  background: {
-    'service_worker': 'js/background.bundle.js',
-    // '__chrome|opera__persistent': true,
+  __chrome__background: {
+    service_worker: 'js/background.bundle.js',
+  },
+  __firefox__background: {
+    scripts: ['js/background.bundle.js'],
+    '__chrome|opera__persistent': true,
   },
 
-  // content_scripts: [
-  //     {
-  //         matches: ['http://*/*', 'https://*/*'],
-  //         js: ['js/contentScript.bundle.js'],
-  //         run_at: "document_end",
-  //     },
-  // ],
+  // content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  // __firefox__applications: {
+  //   gecko: {
+  //     id: '754fb1ad-cc3b-4856-b6a0-7786f8ca9d17',
+  //   },
+  // },
 }
 
 module.exports = manifestInput
