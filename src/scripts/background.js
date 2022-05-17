@@ -1,4 +1,5 @@
 import browser from 'webextension-polyfill'
+import { updateBlockingRules } from './comp/block'
 import { initParams } from './data/params'
 
 browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
@@ -10,4 +11,10 @@ browser.runtime.onInstalled.addListener(async ({ reason, temporary }) => {
   }
 })
 
+browser.storage.onChanged.addListener((changes, areaName)=>{
+  if(areaName === 'local'){
+    updateBlockingRules()
+  }
+})
 initParams().then(() => {}, console.error)
+

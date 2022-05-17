@@ -1,5 +1,4 @@
 import browser from 'webextension-polyfill'
-import { updateBlockingRules } from '../comp/block'
 import { subgroupIds } from './datas'
 
 const params = ['whitelist', ...subgroupIds]
@@ -27,8 +26,6 @@ export async function initParams() {
 
 export async function setParams(p) {
   browser.storage.local.set(p)
-
-  updateBlockingRules()
 }
 
 export function getParams() {

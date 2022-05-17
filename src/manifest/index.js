@@ -1,17 +1,11 @@
 const pkg = require('../../package.json')
 
 const manifestInput = {
-  manifest_version: 3,
+  __chrome__manifest_version: 3,
+  __firefox__manifest_version: 2,
   name: '__MSG_extensionName__',
   version: pkg.version,
   default_locale: 'en_US',
-  web_accessible_resources: [
-    {
-      resources: ['assets/*'],
-      matches: ['*://*/*'],
-    },
-  ],
-
   icons: {
     16: 'assets/icons/favicon-16.png',
     32: 'assets/icons/favicon-32.png',
@@ -22,13 +16,22 @@ const manifestInput = {
   description: '__MSG_extensionDescription__',
   homepage_url: 'https://github.com/lowwebtech/low-radical',
   short_name: 'low-radical',
+  author: 'lowwebtech',
 
-  '__chrome|firefox__author': 'lowwebtech',
   __opera__developer: {
     name: 'lowwebtech',
   },
 
-  host_permissions: ['*://*/*'],
+  __chrome__host_permissions: ['*://*/*'],
+  
+  __chrome__web_accessible_resources: [
+    {
+      resources: ['assets/*'],
+      matches: ['*://*/*'],
+    },
+  ],
+  __firefox__web_accessible_resources: ["assets/*"],
+
 
   __chrome__permissions: [
     'tabs',
@@ -41,6 +44,7 @@ const manifestInput = {
     'tabs',
     'storage',
     'webRequest',
+    'webRequestBlocking',
     'webNavigation',
     '<all_urls>',
   ],
@@ -65,7 +69,17 @@ const manifestInput = {
     ],
   },
 
-  action: {
+  __chrome__action: {
+    default_popup: 'popup.html',
+    default_icon: {
+      16: 'assets/icons/favicon-16.png',
+      32: 'assets/icons/favicon-32.png',
+      48: 'assets/icons/favicon-48.png',
+      128: 'assets/icons/favicon-128.png',
+    },
+    default_title: 'low-radical',
+  },
+  __firefox__browser_action: {
     default_popup: 'popup.html',
     default_icon: {
       16: 'assets/icons/favicon-16.png',
@@ -76,7 +90,7 @@ const manifestInput = {
     default_title: 'low-radical',
   },
 
-  '__chrome|opera__options_page': 'options.html',
+  __chrome__options_page: 'options.html',
 
   options_ui: {
     page: 'options.html',
@@ -88,7 +102,6 @@ const manifestInput = {
   },
   __firefox__background: {
     scripts: ['js/background.bundle.js'],
-    '__chrome|opera__persistent': true,
   },
 
   // content_security_policy: "script-src 'self' 'unsafe-eval'; object-src 'self'",
