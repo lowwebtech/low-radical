@@ -69,7 +69,9 @@ async function restore() {
         fragment.appendChild(li);
       });
 
-      document.querySelector("form > ul").appendChild(fragment);
+      const list = document.createElement("ul");
+      list.appendChild(fragment);
+      document.querySelector("form").appendChild(list);
     },
     (error) => {
       console.log(`Error: ${error}`);

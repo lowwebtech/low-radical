@@ -34,15 +34,15 @@ export function formatDotcoms(array) {
 }
 
 export function parseURL(url) {
-  var parser = document.createElement("a");
-  var searchObject = {};
-  var queries;
-  var split;
-  var i;
+  const parser = document.createElement("a");
+  const searchObject = {};
+
+  let split;
+  let i;
   // Let the browser do the work
   parser.href = url;
   // Convert query string to object
-  queries = parser.search.replace(/^\?/, "").split("&");
+  const queries = parser.search.replace(/^\?/, "").split("&");
   for (i = 0; i < queries.length; i++) {
     split = queries[i].split("=");
     searchObject[split[0]] = split[1];
@@ -54,7 +54,7 @@ export function parseURL(url) {
     port: parser.port,
     pathname: parser.pathname,
     search: parser.search,
-    searchObject: searchObject,
+    searchObject,
     hash: parser.hash,
   };
 }

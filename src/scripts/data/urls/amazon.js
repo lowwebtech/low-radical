@@ -10,7 +10,7 @@ export const amazon = {
       domains: [
         ...getTLDs("www.amazon"),
 
-        'amazon',
+        "amazon",
 
         "amazon.work",
         "amazon.science",
@@ -45,6 +45,9 @@ export const amazon = {
         "assoc-amazon.es",
         "assoc-amazon.fr",
         "assoc-amazon.it",
+
+        "amazon-affiliate.eu",
+        "partenaires.amazon.fr",
 
         // payments
         "amazonpay.in",

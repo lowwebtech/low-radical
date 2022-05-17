@@ -7,7 +7,9 @@ export async function initParams() {
   const keys = getParams();
   const localParams = getLocalParams(keys);
 
+  // get user preferences, then set default new preferences (undefined) to true
   await localParams.then((local) => {
+    console.log(local);
     const o = {};
     keys.forEach((key) => {
       if (typeof local[key] === "undefined") {
@@ -21,9 +23,11 @@ export async function initParams() {
     setParams(o);
   }, console.error);
 }
-export function setParams(p) {
+
+export async function setParams(p) {
   browser.storage.local.set(p);
 }
+
 export function getParams() {
   return params;
 }

@@ -26,6 +26,9 @@ body {
 .options-page {
   font-size: rem(14);
   padding-bottom: 2rem;
+  #linkToOptions {
+    display: none;
+  }
 }
 .popup-page {
   font-size: rem(13);

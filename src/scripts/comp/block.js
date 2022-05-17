@@ -1,36 +1,47 @@
 import browser from "webextension-polyfill";
 import { formatDotcoms, getDotComs } from "../data/urls";
 
-let isBlocking = false;
-export function block() {
-  if (!isBlocking) {
-    isBlocking = true;
+export function updateBlockingRules() {
+  getDotComs().then((dotcoms) => {
+    // console.log(dotcoms)
 
-    getDotComs().then(
-      (dotcoms) => {
-        console.log("DOTCOMS", dotcoms);
+    if (browser.declarativeNetRequest) {
+      // V3
 
-        browser.webRequest.onBeforeRequest.addListener(
-          blockDotComs,
-          {
-            urls: formatDotcoms(dotcoms),
-            types: ["main_frame", "sub_frame"],
-          },
-          ["blocking"]
-        );
-      },
-      (e) => {
-        console.log("error", e);
-      }
-    );
-  }
-}
+      browser.declarativeNetRequest.getDynamicRules().then((rules) => {
+        const oldRuleIds = rules.map((rule, i) => i + 1);
+        const newRules = dotcoms.map((dotcom, i) => {
+          return {
+            id: i + 1,
+            priority: 1,
+            action: {
+              type: "block",
+            },
+            condition: {
+              urlFilter: dotcom,
+              resourceTypes: ["main_frame"],
+            },
+          };
+        });
 
-export function unblock() {
-  if (isBlocking) {
-    isBlocking = false;
-    browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
-  }
+        browser.declarativeNetRequest.updateDynamicRules({
+          removeRuleIds: oldRuleIds,
+          addRules: newRules,
+        });
+      });
+    } else {
+      // V2
+      browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
+      browser.webRequest.onBeforeRequest.addListener(
+        blockDotComs,
+        {
+          urls: formatDotcoms(dotcoms),
+          types: ["main_frame", "sub_frame"],
+        },
+        ["blocking"]
+      );
+    }
+  });
 }
 
 function blockDotComs(requestDetails) {
