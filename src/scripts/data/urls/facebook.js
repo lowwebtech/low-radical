@@ -5,7 +5,7 @@ export const facebook = {
     {
       id: "facebook_com",
       name: "Facebook.com",
-      domains: ["fb.com", "facebook.com", "meta.com", 'facebook'],
+      domains: ["fb.com", "facebook.com", "meta.com", "facebook"],
     },
     {
       id: "instagram",

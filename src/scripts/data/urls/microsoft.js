@@ -5,7 +5,7 @@ export const microsoft = {
     {
       id: "microsoft_com",
       name: "Microsoft.com",
-      domains: ["microsoft.com", 'microsoft'],
+      domains: ["microsoft.com", "microsoft"],
     },
     {
       id: "microsoft_bing",

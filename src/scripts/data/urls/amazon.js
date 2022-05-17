@@ -10,7 +10,7 @@ export const amazon = {
       domains: [
         ...getTLDs("www.amazon"),
 
-        'amazon',
+        "amazon",
 
         "amazon.work",
         "amazon.science",

@@ -1,3 +1,9 @@
+## 0.3.0
+- updates to webextension manifest V3 (chrome) and maintain compatibility to V2 (firefox)
+    - use new API declarativeNetRequest to block request (previously webRequest and webRequestBlocking)
+    - update manifest : action, host_permissions, web_accessible_ressources
+- remove unnecessary files
+
 ## 0.2.0
 - New UI by @kuroneko_io thanks !
 - New blacklist/whitelist by subgroups / services

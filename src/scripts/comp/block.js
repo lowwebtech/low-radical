@@ -1,37 +1,35 @@
-import browser from 'webextension-polyfill'
-import { formatDotcoms, getDotComs } from '../data/urls'
+import browser from "webextension-polyfill";
+import { formatDotcoms, getDotComs } from "../data/urls";
 
 export function updateBlockingRules() {
   getDotComs().then((dotcoms) => {
     // console.log(dotcoms)
 
     if (browser.declarativeNetRequest) {
-
       // V3
 
       browser.declarativeNetRequest.getDynamicRules().then((rules) => {
-        const oldRuleIds = rules.map((rule, i) => i + 1)
+        const oldRuleIds = rules.map((rule, i) => i + 1);
         const newRules = dotcoms.map((dotcom, i) => {
           return {
             id: i + 1,
             priority: 1,
             action: {
-              type: 'block',
+              type: "block",
             },
             condition: {
               urlFilter: dotcom,
-              resourceTypes: ['main_frame'],
+              resourceTypes: ["main_frame"],
             },
-          }
-        })
+          };
+        });
 
         browser.declarativeNetRequest.updateDynamicRules({
           removeRuleIds: oldRuleIds,
           addRules: newRules,
-        })
-      })
-    }else{
-
+        });
+      });
+    } else {
       // V2
       browser.webRequest.onBeforeRequest.removeListener(blockDotComs);
       browser.webRequest.onBeforeRequest.addListener(
@@ -43,7 +41,7 @@ export function updateBlockingRules() {
         ["blocking"]
       );
     }
-  })
+  });
 }
 
 function blockDotComs(requestDetails) {
