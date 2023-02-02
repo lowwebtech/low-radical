@@ -89,7 +89,7 @@
     "resolve-url-loader": "^5.0",
     "sass-loader": "^12.6",
     "terser-webpack-plugin": "^5.3",
-    "web-ext-submit": "^6.8",
+    "web-ext-submit": "^7.5",
     "webpack": "^5.58",
     "webpack-cli": "^4.9",
     "webpack-dev-server": "^4.9",
